@@ -29,6 +29,5 @@ def test_translator_and_machine(golden, caplog):
             machine.main([target, input_stream])
 
         assert stdout.getvalue().strip() == golden.out["out_stdout"]
-
         assert caplog.text.strip() == golden.out["out_log"]
 

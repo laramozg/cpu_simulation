@@ -491,7 +491,7 @@ out_log: |-
   INFO    machine:__print__     INSTR:  360 | AC   97 | BR   65 | IP:   66 | AR:    1 | DR:            0 |  CR: CMP 1 ABSOLUTE     |
   INFO    machine:__print__     INSTR:  361 | AC   97 | BR   66 | IP:   67 | AR:   66 | DR:    956301384 |  CR: BLE 72 DIRECT      |
   INFO    machine:__print__     INSTR:  362 | AC   97 | BR   67 | IP:   68 | AR:    2 | DR:           97 |  CR: LD 2 ABSOLUTE      |
-  INFO    machine:decode_and_execute_instruction {output_buffer: ['W', 'h', 'a', 't', ' ', 'i', 's', ' ', 'y', 'o', 'u', 'r', ' ', 'n', 'a', 'm', 'e', '?', 'H', 'e', 'l', 'l', 'o', ',', ' ', 'L', 'a', 'r', 'i', 's', 'a'] << a}        
+  INFO    machine:decode_and_execute_instruction {output_buffer: ['W', 'h', 'a', 't', ' ', 'i', 's', ' ', 'y', 'o', 'u', 'r', ' ', 'n', 'a', 'm', 'e', '?', 'H', 'e', 'l', 'l', 'o', ',', ' ', 'L', 'a', 'r', 'i', 's', 'a'] << a}
   INFO    machine:__print__     INSTR:  363 | AC   97 | BR   68 | IP:   69 | AR:   68 | DR:   1476395008 |  CR: OUTC 0 NO_ADDRESS  |
   INFO    machine:decode_and_execute_instruction {info_buffer: ['L', 'a', 'r', 'i', 's', 'a', '\x00'] >> 0}
   INFO    machine:__print__     INSTR:  364 | AC    0 | BR   69 | IP:   70 | AR:   69 | DR:   1409286144 |  CR: IN 0 NO_ADDRESS    |
@@ -504,5 +504,3 @@ out_log: |-
   INFO    machine:__print__     INSTR:  371 | AC    0 | BR   64 | IP:   65 | AR:    0 | DR:            0 |  CR: LD 0 ABSOLUTE      |
   INFO    machine:__print__     INSTR:  372 | AC    0 | BR   65 | IP:   66 | AR:    1 | DR:            0 |  CR: CMP 1 ABSOLUTE     |
   INFO    machine:__print__     INSTR:  373 | AC    0 | BR   66 | IP:   72 | AR:   66 | DR:    956301384 |  CR: BLE 72 DIRECT      |
-
-

@@ -361,6 +361,7 @@ def main(args):
 
 
 if __name__ == '__main__':
+    logging.basicConfig(filename='logfile.log', level=logging.INFO, format='%(levelname)-7s %(module)s:%(funcName)-13s %(message)s')
     FORMAT = '%(levelname)-7s %(module)s:%(funcName)-13s %(message)s'
     logging.basicConfig(format=FORMAT)
     logging.getLogger().setLevel(logging.INFO)
