@@ -1,0 +1,10 @@
+string hw = "What is your name?"
+print(hw, string)
+string h = "Hello, "
+print(h, string)
+int n = 0
+input(n)
+while (n > 0)
+	print(n, string)
+	input(n)
+endwhile

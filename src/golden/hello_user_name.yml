@@ -1,0 +1,508 @@
+in_source: |-
+  string hw = "What is your name?"
+  print(hw, string)
+  string h = "Hello, "
+  print(h, string)
+  int n = 0
+  input(n)
+  while (n > 0)
+  	print(n, string)
+  	input(n)
+  endwhile
+in_stdin: |-
+  Larisa
+out_code: |-
+  0   | '00000000000000000000000000000000'               | Opcode.DATA 0 AddressingMode.DIRECT
+  1   | '00000000000000000000000000000000'               | Opcode.DATA 0 AddressingMode.DIRECT
+  2   | '00000000000000000000000000000000'               | Opcode.DATA 0 AddressingMode.DIRECT
+  3   | '00000000000000000000000000000101'               | Opcode.DATA 5 AddressingMode.ABSOLUTE
+  4   | '00000000000000000000000000010010'               | Opcode.DATA 18 AddressingMode.DIRECT
+  5   | '00000000000000000000000001010111'               | Opcode.DATA 87 AddressingMode.DIRECT
+  6   | '00000000000000000000000001101000'               | Opcode.DATA 104 AddressingMode.DIRECT
+  7   | '00000000000000000000000001100001'               | Opcode.DATA 97 AddressingMode.DIRECT
+  8   | '00000000000000000000000001110100'               | Opcode.DATA 116 AddressingMode.DIRECT
+  9   | '00000000000000000000000000100000'               | Opcode.DATA 32 AddressingMode.DIRECT
+  10  | '00000000000000000000000001101001'               | Opcode.DATA 105 AddressingMode.DIRECT
+  11  | '00000000000000000000000001110011'               | Opcode.DATA 115 AddressingMode.DIRECT
+  12  | '00000000000000000000000000100000'               | Opcode.DATA 32 AddressingMode.DIRECT
+  13  | '00000000000000000000000001111001'               | Opcode.DATA 121 AddressingMode.DIRECT
+  14  | '00000000000000000000000001101111'               | Opcode.DATA 111 AddressingMode.DIRECT
+  15  | '00000000000000000000000001110101'               | Opcode.DATA 117 AddressingMode.DIRECT
+  16  | '00000000000000000000000001110010'               | Opcode.DATA 114 AddressingMode.DIRECT
+  17  | '00000000000000000000000000100000'               | Opcode.DATA 32 AddressingMode.DIRECT
+  18  | '00000000000000000000000001101110'               | Opcode.DATA 110 AddressingMode.DIRECT
+  19  | '00000000000000000000000001100001'               | Opcode.DATA 97 AddressingMode.DIRECT
+  20  | '00000000000000000000000001101101'               | Opcode.DATA 109 AddressingMode.DIRECT
+  21  | '00000000000000000000000001100101'               | Opcode.DATA 101 AddressingMode.DIRECT
+  22  | '00000000000000000000000000111111'               | Opcode.DATA 63 AddressingMode.DIRECT
+  23  | '00000000000000000000000000000000'               | Opcode.DATA 0 AddressingMode.DIRECT
+  24  | '00000000000000000000000000011010'               | Opcode.DATA 26 AddressingMode.ABSOLUTE
+  25  | '00000000000000000000000000000111'               | Opcode.DATA 7 AddressingMode.DIRECT
+  26  | '00000000000000000000000001001000'               | Opcode.DATA 72 AddressingMode.DIRECT
+  27  | '00000000000000000000000001100101'               | Opcode.DATA 101 AddressingMode.DIRECT
+  28  | '00000000000000000000000001101100'               | Opcode.DATA 108 AddressingMode.DIRECT
+  29  | '00000000000000000000000001101100'               | Opcode.DATA 108 AddressingMode.DIRECT
+  30  | '00000000000000000000000001101111'               | Opcode.DATA 111 AddressingMode.DIRECT
+  31  | '00000000000000000000000000101100'               | Opcode.DATA 44 AddressingMode.DIRECT
+  32  | '00000000000000000000000000100000'               | Opcode.DATA 32 AddressingMode.DIRECT
+  33  | '00000000000000000000000000000000'               | Opcode.DATA 0 AddressingMode.DIRECT
+  34  | '00100010000000000000000000000100'               | Opcode.LD 4 AddressingMode.ABSOLUTE
+  35  | '00100110000000000000000000010111'               | Opcode.ST 23 AddressingMode.ABSOLUTE
+  36  | '00100010000000000000000000010111'               | Opcode.LD 23 AddressingMode.ABSOLUTE
+  37  | '00101101000000000000000000101110'               | Opcode.BEQ 46 AddressingMode.DIRECT
+  38  | '10000100000000000000000000000000'               | Opcode.DEC
+  39  | '00100110000000000000000000010111'               | Opcode.ST 23 AddressingMode.ABSOLUTE
+  40  | '00100011000000000000000000000011'               | Opcode.LD 3 AddressingMode.RELATIVE
+  41  | '01011000000000000000000000000000'               | Opcode.OUTC
+  42  | '00100010000000000000000000000011'               | Opcode.LD 3 AddressingMode.ABSOLUTE
+  43  | '01000000000000000000000000000000'               | Opcode.INC
+  44  | '00100110000000000000000000000011'               | Opcode.ST 3 AddressingMode.ABSOLUTE
+  45  | '00101001000000000000000000100100'               | Opcode.JUMP 36 AddressingMode.DIRECT
+  46  | '00100010000000000000000000011001'               | Opcode.LD 25 AddressingMode.ABSOLUTE
+  47  | '00100110000000000000000000100001'               | Opcode.ST 33 AddressingMode.ABSOLUTE
+  48  | '00100010000000000000000000100001'               | Opcode.LD 33 AddressingMode.ABSOLUTE
+  49  | '00101101000000000000000000111010'               | Opcode.BEQ 58 AddressingMode.DIRECT
+  50  | '10000100000000000000000000000000'               | Opcode.DEC
+  51  | '00100110000000000000000000100001'               | Opcode.ST 33 AddressingMode.ABSOLUTE
+  52  | '00100011000000000000000000011000'               | Opcode.LD 24 AddressingMode.RELATIVE
+  53  | '01011000000000000000000000000000'               | Opcode.OUTC
+  54  | '00100010000000000000000000011000'               | Opcode.LD 24 AddressingMode.ABSOLUTE
+  55  | '01000000000000000000000000000000'               | Opcode.INC
+  56  | '00100110000000000000000000011000'               | Opcode.ST 24 AddressingMode.ABSOLUTE
+  57  | '00101001000000000000000000110000'               | Opcode.JUMP 48 AddressingMode.DIRECT
+  58  | '01010100000000000000000000000000'               | Opcode.IN
+  59  | '00100110000000000000000000000010'               | Opcode.ST 2 AddressingMode.ABSOLUTE
+  60  | '00100010000000000000000000000010'               | Opcode.LD 2 AddressingMode.ABSOLUTE
+  61  | '00100110000000000000000000000000'               | Opcode.ST 0 AddressingMode.ABSOLUTE
+  62  | '00100001000000000000000000000000'               | Opcode.LD 0 AddressingMode.DIRECT
+  63  | '00100110000000000000000000000001'               | Opcode.ST 1 AddressingMode.ABSOLUTE
+  64  | '00100010000000000000000000000000'               | Opcode.LD 0 AddressingMode.ABSOLUTE
+  65  | '00011010000000000000000000000001'               | Opcode.CMP 1 AddressingMode.ABSOLUTE
+  66  | '00111001000000000000000001001000'               | Opcode.BLE 72 AddressingMode.DIRECT
+  67  | '00100010000000000000000000000010'               | Opcode.LD 2 AddressingMode.ABSOLUTE
+  68  | '01011000000000000000000000000000'               | Opcode.OUTC
+  69  | '01010100000000000000000000000000'               | Opcode.IN
+  70  | '00100110000000000000000000000010'               | Opcode.ST 2 AddressingMode.ABSOLUTE
+  71  | '00101001000000000000000000111100'               | Opcode.JUMP 60 AddressingMode.DIRECT
+  72  | '01001100000000000000000000000000'               | Opcode.HLT
+
+out_stdout: |-
+  source LoC: 10  code instr: 73
+  ============================================================
+  Output: What is your name?Hello, Larisa
+  Instructions: 373
+  Ticks: 1852
+out_log: |-
+  INFO    machine:__print__     INSTR:    1 | AC    0 | BR    0 | IP:    1 | AR:    0 | DR:            0 |  CR: DATA 0 NO_ADDRESS  |
+  INFO    machine:__print__     INSTR:    2 | AC    0 | BR    1 | IP:    2 | AR:    1 | DR:            0 |  CR: DATA 0 NO_ADDRESS  |
+  INFO    machine:__print__     INSTR:    3 | AC    0 | BR    2 | IP:    3 | AR:    2 | DR:            0 |  CR: DATA 0 NO_ADDRESS  |
+  INFO    machine:__print__     INSTR:    4 | AC    0 | BR    3 | IP:    4 | AR:    3 | DR:            5 |  CR: DATA 5 NO_ADDRESS  |
+  INFO    machine:__print__     INSTR:    5 | AC    0 | BR    4 | IP:    5 | AR:    4 | DR:           18 |  CR: DATA 18 NO_ADDRESS |
+  INFO    machine:__print__     INSTR:    6 | AC    0 | BR    5 | IP:    6 | AR:    5 | DR:           87 |  CR: DATA 87 NO_ADDRESS |
+  INFO    machine:__print__     INSTR:    7 | AC    0 | BR    6 | IP:    7 | AR:    6 | DR:          104 |  CR: DATA 104 NO_ADDRESS |
+  INFO    machine:__print__     INSTR:    8 | AC    0 | BR    7 | IP:    8 | AR:    7 | DR:           97 |  CR: DATA 97 NO_ADDRESS |
+  INFO    machine:__print__     INSTR:    9 | AC    0 | BR    8 | IP:    9 | AR:    8 | DR:          116 |  CR: DATA 116 NO_ADDRESS |
+  INFO    machine:__print__     INSTR:   10 | AC    0 | BR    9 | IP:   10 | AR:    9 | DR:           32 |  CR: DATA 32 NO_ADDRESS |
+  INFO    machine:__print__     INSTR:   11 | AC    0 | BR   10 | IP:   11 | AR:   10 | DR:          105 |  CR: DATA 105 NO_ADDRESS |
+  INFO    machine:__print__     INSTR:   12 | AC    0 | BR   11 | IP:   12 | AR:   11 | DR:          115 |  CR: DATA 115 NO_ADDRESS |
+  INFO    machine:__print__     INSTR:   13 | AC    0 | BR   12 | IP:   13 | AR:   12 | DR:           32 |  CR: DATA 32 NO_ADDRESS |
+  INFO    machine:__print__     INSTR:   14 | AC    0 | BR   13 | IP:   14 | AR:   13 | DR:          121 |  CR: DATA 121 NO_ADDRESS |
+  INFO    machine:__print__     INSTR:   15 | AC    0 | BR   14 | IP:   15 | AR:   14 | DR:          111 |  CR: DATA 111 NO_ADDRESS |
+  INFO    machine:__print__     INSTR:   16 | AC    0 | BR   15 | IP:   16 | AR:   15 | DR:          117 |  CR: DATA 117 NO_ADDRESS |
+  INFO    machine:__print__     INSTR:   17 | AC    0 | BR   16 | IP:   17 | AR:   16 | DR:          114 |  CR: DATA 114 NO_ADDRESS |
+  INFO    machine:__print__     INSTR:   18 | AC    0 | BR   17 | IP:   18 | AR:   17 | DR:           32 |  CR: DATA 32 NO_ADDRESS |
+  INFO    machine:__print__     INSTR:   19 | AC    0 | BR   18 | IP:   19 | AR:   18 | DR:          110 |  CR: DATA 110 NO_ADDRESS |
+  INFO    machine:__print__     INSTR:   20 | AC    0 | BR   19 | IP:   20 | AR:   19 | DR:           97 |  CR: DATA 97 NO_ADDRESS |
+  INFO    machine:__print__     INSTR:   21 | AC    0 | BR   20 | IP:   21 | AR:   20 | DR:          109 |  CR: DATA 109 NO_ADDRESS |
+  INFO    machine:__print__     INSTR:   22 | AC    0 | BR   21 | IP:   22 | AR:   21 | DR:          101 |  CR: DATA 101 NO_ADDRESS |
+  INFO    machine:__print__     INSTR:   23 | AC    0 | BR   22 | IP:   23 | AR:   22 | DR:           63 |  CR: DATA 63 NO_ADDRESS |
+  INFO    machine:__print__     INSTR:   24 | AC    0 | BR   23 | IP:   24 | AR:   23 | DR:            0 |  CR: DATA 0 NO_ADDRESS  |
+  INFO    machine:__print__     INSTR:   25 | AC    0 | BR   24 | IP:   25 | AR:   24 | DR:           26 |  CR: DATA 26 NO_ADDRESS |
+  INFO    machine:__print__     INSTR:   26 | AC    0 | BR   25 | IP:   26 | AR:   25 | DR:            7 |  CR: DATA 7 NO_ADDRESS  |
+  INFO    machine:__print__     INSTR:   27 | AC    0 | BR   26 | IP:   27 | AR:   26 | DR:           72 |  CR: DATA 72 NO_ADDRESS |
+  INFO    machine:__print__     INSTR:   28 | AC    0 | BR   27 | IP:   28 | AR:   27 | DR:          101 |  CR: DATA 101 NO_ADDRESS |
+  INFO    machine:__print__     INSTR:   29 | AC    0 | BR   28 | IP:   29 | AR:   28 | DR:          108 |  CR: DATA 108 NO_ADDRESS |
+  INFO    machine:__print__     INSTR:   30 | AC    0 | BR   29 | IP:   30 | AR:   29 | DR:          108 |  CR: DATA 108 NO_ADDRESS |
+  INFO    machine:__print__     INSTR:   31 | AC    0 | BR   30 | IP:   31 | AR:   30 | DR:          111 |  CR: DATA 111 NO_ADDRESS |
+  INFO    machine:__print__     INSTR:   32 | AC    0 | BR   31 | IP:   32 | AR:   31 | DR:           44 |  CR: DATA 44 NO_ADDRESS |
+  INFO    machine:__print__     INSTR:   33 | AC    0 | BR   32 | IP:   33 | AR:   32 | DR:           32 |  CR: DATA 32 NO_ADDRESS |
+  INFO    machine:__print__     INSTR:   34 | AC    0 | BR   33 | IP:   34 | AR:   33 | DR:            0 |  CR: DATA 0 NO_ADDRESS  |
+  INFO    machine:__print__     INSTR:   35 | AC   18 | BR   34 | IP:   35 | AR:    4 | DR:           18 |  CR: LD 4 ABSOLUTE      |
+  INFO    machine:__print__     INSTR:   36 | AC   18 | BR   35 | IP:   36 | AR:   23 | DR:           18 |  CR: ST 23 ABSOLUTE     |
+  INFO    machine:__print__     INSTR:   37 | AC   18 | BR   36 | IP:   37 | AR:   23 | DR:           18 |  CR: LD 23 ABSOLUTE     |
+  INFO    machine:__print__     INSTR:   38 | AC   18 | BR   37 | IP:   38 | AR:   37 | DR:    754974766 |  CR: BEQ 46 DIRECT      |
+  INFO    machine:__print__     INSTR:   39 | AC   17 | BR   38 | IP:   39 | AR:   38 | DR:   2214592512 |  CR: DEC 0 NO_ADDRESS   |
+  INFO    machine:__print__     INSTR:   40 | AC   17 | BR   39 | IP:   40 | AR:   23 | DR:           17 |  CR: ST 23 ABSOLUTE     |
+  INFO    machine:__print__     INSTR:   41 | AC   87 | BR   40 | IP:   41 | AR:    5 | DR:           87 |  CR: LD 3 RELATIVE      |
+  INFO    machine:decode_and_execute_instruction {output_buffer: ['W'] << W}
+  INFO    machine:__print__     INSTR:   42 | AC   87 | BR   41 | IP:   42 | AR:   41 | DR:   1476395008 |  CR: OUTC 0 NO_ADDRESS  |
+  INFO    machine:__print__     INSTR:   43 | AC    5 | BR   42 | IP:   43 | AR:    3 | DR:            5 |  CR: LD 3 ABSOLUTE      |
+  INFO    machine:__print__     INSTR:   44 | AC    6 | BR   43 | IP:   44 | AR:   43 | DR:   1073741824 |  CR: INC 0 NO_ADDRESS   |
+  INFO    machine:__print__     INSTR:   45 | AC    6 | BR   44 | IP:   45 | AR:    3 | DR:            6 |  CR: ST 3 ABSOLUTE      |
+  INFO    machine:__print__     INSTR:   46 | AC    6 | BR   45 | IP:   36 | AR:   45 | DR:    687865892 |  CR: JUMP 36 DIRECT     |
+  INFO    machine:__print__     INSTR:   47 | AC   17 | BR   36 | IP:   37 | AR:   23 | DR:           17 |  CR: LD 23 ABSOLUTE     |
+  INFO    machine:__print__     INSTR:   48 | AC   17 | BR   37 | IP:   38 | AR:   37 | DR:    754974766 |  CR: BEQ 46 DIRECT      |
+  INFO    machine:__print__     INSTR:   49 | AC   16 | BR   38 | IP:   39 | AR:   38 | DR:   2214592512 |  CR: DEC 0 NO_ADDRESS   |
+  INFO    machine:__print__     INSTR:   50 | AC   16 | BR   39 | IP:   40 | AR:   23 | DR:           16 |  CR: ST 23 ABSOLUTE     |
+  INFO    machine:__print__     INSTR:   51 | AC  104 | BR   40 | IP:   41 | AR:    6 | DR:          104 |  CR: LD 3 RELATIVE      |
+  INFO    machine:decode_and_execute_instruction {output_buffer: ['W', 'h'] << h}
+  INFO    machine:__print__     INSTR:   52 | AC  104 | BR   41 | IP:   42 | AR:   41 | DR:   1476395008 |  CR: OUTC 0 NO_ADDRESS  |
+  INFO    machine:__print__     INSTR:   53 | AC    6 | BR   42 | IP:   43 | AR:    3 | DR:            6 |  CR: LD 3 ABSOLUTE      |
+  INFO    machine:__print__     INSTR:   54 | AC    7 | BR   43 | IP:   44 | AR:   43 | DR:   1073741824 |  CR: INC 0 NO_ADDRESS   |
+  INFO    machine:__print__     INSTR:   55 | AC    7 | BR   44 | IP:   45 | AR:    3 | DR:            7 |  CR: ST 3 ABSOLUTE      |
+  INFO    machine:__print__     INSTR:   56 | AC    7 | BR   45 | IP:   36 | AR:   45 | DR:    687865892 |  CR: JUMP 36 DIRECT     |
+  INFO    machine:__print__     INSTR:   57 | AC   16 | BR   36 | IP:   37 | AR:   23 | DR:           16 |  CR: LD 23 ABSOLUTE     |
+  INFO    machine:__print__     INSTR:   58 | AC   16 | BR   37 | IP:   38 | AR:   37 | DR:    754974766 |  CR: BEQ 46 DIRECT      |
+  INFO    machine:__print__     INSTR:   59 | AC   15 | BR   38 | IP:   39 | AR:   38 | DR:   2214592512 |  CR: DEC 0 NO_ADDRESS   |
+  INFO    machine:__print__     INSTR:   60 | AC   15 | BR   39 | IP:   40 | AR:   23 | DR:           15 |  CR: ST 23 ABSOLUTE     |
+  INFO    machine:__print__     INSTR:   61 | AC   97 | BR   40 | IP:   41 | AR:    7 | DR:           97 |  CR: LD 3 RELATIVE      |
+  INFO    machine:decode_and_execute_instruction {output_buffer: ['W', 'h', 'a'] << a}
+  INFO    machine:__print__     INSTR:   62 | AC   97 | BR   41 | IP:   42 | AR:   41 | DR:   1476395008 |  CR: OUTC 0 NO_ADDRESS  |
+  INFO    machine:__print__     INSTR:   63 | AC    7 | BR   42 | IP:   43 | AR:    3 | DR:            7 |  CR: LD 3 ABSOLUTE      |
+  INFO    machine:__print__     INSTR:   64 | AC    8 | BR   43 | IP:   44 | AR:   43 | DR:   1073741824 |  CR: INC 0 NO_ADDRESS   |
+  INFO    machine:__print__     INSTR:   65 | AC    8 | BR   44 | IP:   45 | AR:    3 | DR:            8 |  CR: ST 3 ABSOLUTE      |
+  INFO    machine:__print__     INSTR:   66 | AC    8 | BR   45 | IP:   36 | AR:   45 | DR:    687865892 |  CR: JUMP 36 DIRECT     |
+  INFO    machine:__print__     INSTR:   67 | AC   15 | BR   36 | IP:   37 | AR:   23 | DR:           15 |  CR: LD 23 ABSOLUTE     |
+  INFO    machine:__print__     INSTR:   68 | AC   15 | BR   37 | IP:   38 | AR:   37 | DR:    754974766 |  CR: BEQ 46 DIRECT      |
+  INFO    machine:__print__     INSTR:   69 | AC   14 | BR   38 | IP:   39 | AR:   38 | DR:   2214592512 |  CR: DEC 0 NO_ADDRESS   |
+  INFO    machine:__print__     INSTR:   70 | AC   14 | BR   39 | IP:   40 | AR:   23 | DR:           14 |  CR: ST 23 ABSOLUTE     |
+  INFO    machine:__print__     INSTR:   71 | AC  116 | BR   40 | IP:   41 | AR:    8 | DR:          116 |  CR: LD 3 RELATIVE      |
+  INFO    machine:decode_and_execute_instruction {output_buffer: ['W', 'h', 'a', 't'] << t}
+  INFO    machine:__print__     INSTR:   72 | AC  116 | BR   41 | IP:   42 | AR:   41 | DR:   1476395008 |  CR: OUTC 0 NO_ADDRESS  |
+  INFO    machine:__print__     INSTR:   73 | AC    8 | BR   42 | IP:   43 | AR:    3 | DR:            8 |  CR: LD 3 ABSOLUTE      |
+  INFO    machine:__print__     INSTR:   74 | AC    9 | BR   43 | IP:   44 | AR:   43 | DR:   1073741824 |  CR: INC 0 NO_ADDRESS   |
+  INFO    machine:__print__     INSTR:   75 | AC    9 | BR   44 | IP:   45 | AR:    3 | DR:            9 |  CR: ST 3 ABSOLUTE      |
+  INFO    machine:__print__     INSTR:   76 | AC    9 | BR   45 | IP:   36 | AR:   45 | DR:    687865892 |  CR: JUMP 36 DIRECT     |
+  INFO    machine:__print__     INSTR:   77 | AC   14 | BR   36 | IP:   37 | AR:   23 | DR:           14 |  CR: LD 23 ABSOLUTE     |
+  INFO    machine:__print__     INSTR:   78 | AC   14 | BR   37 | IP:   38 | AR:   37 | DR:    754974766 |  CR: BEQ 46 DIRECT      |
+  INFO    machine:__print__     INSTR:   79 | AC   13 | BR   38 | IP:   39 | AR:   38 | DR:   2214592512 |  CR: DEC 0 NO_ADDRESS   |
+  INFO    machine:__print__     INSTR:   80 | AC   13 | BR   39 | IP:   40 | AR:   23 | DR:           13 |  CR: ST 23 ABSOLUTE     |
+  INFO    machine:__print__     INSTR:   81 | AC   32 | BR   40 | IP:   41 | AR:    9 | DR:           32 |  CR: LD 3 RELATIVE      |
+  INFO    machine:decode_and_execute_instruction {output_buffer: ['W', 'h', 'a', 't', ' '] <<  }
+  INFO    machine:__print__     INSTR:   82 | AC   32 | BR   41 | IP:   42 | AR:   41 | DR:   1476395008 |  CR: OUTC 0 NO_ADDRESS  |
+  INFO    machine:__print__     INSTR:   83 | AC    9 | BR   42 | IP:   43 | AR:    3 | DR:            9 |  CR: LD 3 ABSOLUTE      |
+  INFO    machine:__print__     INSTR:   84 | AC   10 | BR   43 | IP:   44 | AR:   43 | DR:   1073741824 |  CR: INC 0 NO_ADDRESS   |
+  INFO    machine:__print__     INSTR:   85 | AC   10 | BR   44 | IP:   45 | AR:    3 | DR:           10 |  CR: ST 3 ABSOLUTE      |
+  INFO    machine:__print__     INSTR:   86 | AC   10 | BR   45 | IP:   36 | AR:   45 | DR:    687865892 |  CR: JUMP 36 DIRECT     |
+  INFO    machine:__print__     INSTR:   87 | AC   13 | BR   36 | IP:   37 | AR:   23 | DR:           13 |  CR: LD 23 ABSOLUTE     |
+  INFO    machine:__print__     INSTR:   88 | AC   13 | BR   37 | IP:   38 | AR:   37 | DR:    754974766 |  CR: BEQ 46 DIRECT      |
+  INFO    machine:__print__     INSTR:   89 | AC   12 | BR   38 | IP:   39 | AR:   38 | DR:   2214592512 |  CR: DEC 0 NO_ADDRESS   |
+  INFO    machine:__print__     INSTR:   90 | AC   12 | BR   39 | IP:   40 | AR:   23 | DR:           12 |  CR: ST 23 ABSOLUTE     |
+  INFO    machine:__print__     INSTR:   91 | AC  105 | BR   40 | IP:   41 | AR:   10 | DR:          105 |  CR: LD 3 RELATIVE      |
+  INFO    machine:decode_and_execute_instruction {output_buffer: ['W', 'h', 'a', 't', ' ', 'i'] << i}
+  INFO    machine:__print__     INSTR:   92 | AC  105 | BR   41 | IP:   42 | AR:   41 | DR:   1476395008 |  CR: OUTC 0 NO_ADDRESS  |
+  INFO    machine:__print__     INSTR:   93 | AC   10 | BR   42 | IP:   43 | AR:    3 | DR:           10 |  CR: LD 3 ABSOLUTE      |
+  INFO    machine:__print__     INSTR:   94 | AC   11 | BR   43 | IP:   44 | AR:   43 | DR:   1073741824 |  CR: INC 0 NO_ADDRESS   |
+  INFO    machine:__print__     INSTR:   95 | AC   11 | BR   44 | IP:   45 | AR:    3 | DR:           11 |  CR: ST 3 ABSOLUTE      |
+  INFO    machine:__print__     INSTR:   96 | AC   11 | BR   45 | IP:   36 | AR:   45 | DR:    687865892 |  CR: JUMP 36 DIRECT     |
+  INFO    machine:__print__     INSTR:   97 | AC   12 | BR   36 | IP:   37 | AR:   23 | DR:           12 |  CR: LD 23 ABSOLUTE     |
+  INFO    machine:__print__     INSTR:   98 | AC   12 | BR   37 | IP:   38 | AR:   37 | DR:    754974766 |  CR: BEQ 46 DIRECT      |
+  INFO    machine:__print__     INSTR:   99 | AC   11 | BR   38 | IP:   39 | AR:   38 | DR:   2214592512 |  CR: DEC 0 NO_ADDRESS   |
+  INFO    machine:__print__     INSTR:  100 | AC   11 | BR   39 | IP:   40 | AR:   23 | DR:           11 |  CR: ST 23 ABSOLUTE     |
+  INFO    machine:__print__     INSTR:  101 | AC  115 | BR   40 | IP:   41 | AR:   11 | DR:          115 |  CR: LD 3 RELATIVE      |
+  INFO    machine:decode_and_execute_instruction {output_buffer: ['W', 'h', 'a', 't', ' ', 'i', 's'] << s}
+  INFO    machine:__print__     INSTR:  102 | AC  115 | BR   41 | IP:   42 | AR:   41 | DR:   1476395008 |  CR: OUTC 0 NO_ADDRESS  |
+  INFO    machine:__print__     INSTR:  103 | AC   11 | BR   42 | IP:   43 | AR:    3 | DR:           11 |  CR: LD 3 ABSOLUTE      |
+  INFO    machine:__print__     INSTR:  104 | AC   12 | BR   43 | IP:   44 | AR:   43 | DR:   1073741824 |  CR: INC 0 NO_ADDRESS   |
+  INFO    machine:__print__     INSTR:  105 | AC   12 | BR   44 | IP:   45 | AR:    3 | DR:           12 |  CR: ST 3 ABSOLUTE      |
+  INFO    machine:__print__     INSTR:  106 | AC   12 | BR   45 | IP:   36 | AR:   45 | DR:    687865892 |  CR: JUMP 36 DIRECT     |
+  INFO    machine:__print__     INSTR:  107 | AC   11 | BR   36 | IP:   37 | AR:   23 | DR:           11 |  CR: LD 23 ABSOLUTE     |
+  INFO    machine:__print__     INSTR:  108 | AC   11 | BR   37 | IP:   38 | AR:   37 | DR:    754974766 |  CR: BEQ 46 DIRECT      |
+  INFO    machine:__print__     INSTR:  109 | AC   10 | BR   38 | IP:   39 | AR:   38 | DR:   2214592512 |  CR: DEC 0 NO_ADDRESS   |
+  INFO    machine:__print__     INSTR:  110 | AC   10 | BR   39 | IP:   40 | AR:   23 | DR:           10 |  CR: ST 23 ABSOLUTE     |
+  INFO    machine:__print__     INSTR:  111 | AC   32 | BR   40 | IP:   41 | AR:   12 | DR:           32 |  CR: LD 3 RELATIVE      |
+  INFO    machine:decode_and_execute_instruction {output_buffer: ['W', 'h', 'a', 't', ' ', 'i', 's', ' '] <<  }
+  INFO    machine:__print__     INSTR:  112 | AC   32 | BR   41 | IP:   42 | AR:   41 | DR:   1476395008 |  CR: OUTC 0 NO_ADDRESS  |
+  INFO    machine:__print__     INSTR:  113 | AC   12 | BR   42 | IP:   43 | AR:    3 | DR:           12 |  CR: LD 3 ABSOLUTE      |
+  INFO    machine:__print__     INSTR:  114 | AC   13 | BR   43 | IP:   44 | AR:   43 | DR:   1073741824 |  CR: INC 0 NO_ADDRESS   |
+  INFO    machine:__print__     INSTR:  115 | AC   13 | BR   44 | IP:   45 | AR:    3 | DR:           13 |  CR: ST 3 ABSOLUTE      |
+  INFO    machine:__print__     INSTR:  116 | AC   13 | BR   45 | IP:   36 | AR:   45 | DR:    687865892 |  CR: JUMP 36 DIRECT     |
+  INFO    machine:__print__     INSTR:  117 | AC   10 | BR   36 | IP:   37 | AR:   23 | DR:           10 |  CR: LD 23 ABSOLUTE     |
+  INFO    machine:__print__     INSTR:  118 | AC   10 | BR   37 | IP:   38 | AR:   37 | DR:    754974766 |  CR: BEQ 46 DIRECT      |
+  INFO    machine:__print__     INSTR:  119 | AC    9 | BR   38 | IP:   39 | AR:   38 | DR:   2214592512 |  CR: DEC 0 NO_ADDRESS   |
+  INFO    machine:__print__     INSTR:  120 | AC    9 | BR   39 | IP:   40 | AR:   23 | DR:            9 |  CR: ST 23 ABSOLUTE     |
+  INFO    machine:__print__     INSTR:  121 | AC  121 | BR   40 | IP:   41 | AR:   13 | DR:          121 |  CR: LD 3 RELATIVE      |
+  INFO    machine:decode_and_execute_instruction {output_buffer: ['W', 'h', 'a', 't', ' ', 'i', 's', ' ', 'y'] << y}
+  INFO    machine:__print__     INSTR:  122 | AC  121 | BR   41 | IP:   42 | AR:   41 | DR:   1476395008 |  CR: OUTC 0 NO_ADDRESS  |
+  INFO    machine:__print__     INSTR:  123 | AC   13 | BR   42 | IP:   43 | AR:    3 | DR:           13 |  CR: LD 3 ABSOLUTE      |
+  INFO    machine:__print__     INSTR:  124 | AC   14 | BR   43 | IP:   44 | AR:   43 | DR:   1073741824 |  CR: INC 0 NO_ADDRESS   |
+  INFO    machine:__print__     INSTR:  125 | AC   14 | BR   44 | IP:   45 | AR:    3 | DR:           14 |  CR: ST 3 ABSOLUTE      |
+  INFO    machine:__print__     INSTR:  126 | AC   14 | BR   45 | IP:   36 | AR:   45 | DR:    687865892 |  CR: JUMP 36 DIRECT     |
+  INFO    machine:__print__     INSTR:  127 | AC    9 | BR   36 | IP:   37 | AR:   23 | DR:            9 |  CR: LD 23 ABSOLUTE     |
+  INFO    machine:__print__     INSTR:  128 | AC    9 | BR   37 | IP:   38 | AR:   37 | DR:    754974766 |  CR: BEQ 46 DIRECT      |
+  INFO    machine:__print__     INSTR:  129 | AC    8 | BR   38 | IP:   39 | AR:   38 | DR:   2214592512 |  CR: DEC 0 NO_ADDRESS   |
+  INFO    machine:__print__     INSTR:  130 | AC    8 | BR   39 | IP:   40 | AR:   23 | DR:            8 |  CR: ST 23 ABSOLUTE     |
+  INFO    machine:__print__     INSTR:  131 | AC  111 | BR   40 | IP:   41 | AR:   14 | DR:          111 |  CR: LD 3 RELATIVE      |
+  INFO    machine:decode_and_execute_instruction {output_buffer: ['W', 'h', 'a', 't', ' ', 'i', 's', ' ', 'y', 'o'] << o}
+  INFO    machine:__print__     INSTR:  132 | AC  111 | BR   41 | IP:   42 | AR:   41 | DR:   1476395008 |  CR: OUTC 0 NO_ADDRESS  |
+  INFO    machine:__print__     INSTR:  133 | AC   14 | BR   42 | IP:   43 | AR:    3 | DR:           14 |  CR: LD 3 ABSOLUTE      |
+  INFO    machine:__print__     INSTR:  134 | AC   15 | BR   43 | IP:   44 | AR:   43 | DR:   1073741824 |  CR: INC 0 NO_ADDRESS   |
+  INFO    machine:__print__     INSTR:  135 | AC   15 | BR   44 | IP:   45 | AR:    3 | DR:           15 |  CR: ST 3 ABSOLUTE      |
+  INFO    machine:__print__     INSTR:  136 | AC   15 | BR   45 | IP:   36 | AR:   45 | DR:    687865892 |  CR: JUMP 36 DIRECT     |
+  INFO    machine:__print__     INSTR:  137 | AC    8 | BR   36 | IP:   37 | AR:   23 | DR:            8 |  CR: LD 23 ABSOLUTE     |
+  INFO    machine:__print__     INSTR:  138 | AC    8 | BR   37 | IP:   38 | AR:   37 | DR:    754974766 |  CR: BEQ 46 DIRECT      |
+  INFO    machine:__print__     INSTR:  139 | AC    7 | BR   38 | IP:   39 | AR:   38 | DR:   2214592512 |  CR: DEC 0 NO_ADDRESS   |
+  INFO    machine:__print__     INSTR:  140 | AC    7 | BR   39 | IP:   40 | AR:   23 | DR:            7 |  CR: ST 23 ABSOLUTE     |
+  INFO    machine:__print__     INSTR:  141 | AC  117 | BR   40 | IP:   41 | AR:   15 | DR:          117 |  CR: LD 3 RELATIVE      |
+  INFO    machine:decode_and_execute_instruction {output_buffer: ['W', 'h', 'a', 't', ' ', 'i', 's', ' ', 'y', 'o', 'u'] << u}
+  INFO    machine:__print__     INSTR:  142 | AC  117 | BR   41 | IP:   42 | AR:   41 | DR:   1476395008 |  CR: OUTC 0 NO_ADDRESS  |
+  INFO    machine:__print__     INSTR:  143 | AC   15 | BR   42 | IP:   43 | AR:    3 | DR:           15 |  CR: LD 3 ABSOLUTE      |
+  INFO    machine:__print__     INSTR:  144 | AC   16 | BR   43 | IP:   44 | AR:   43 | DR:   1073741824 |  CR: INC 0 NO_ADDRESS   |
+  INFO    machine:__print__     INSTR:  145 | AC   16 | BR   44 | IP:   45 | AR:    3 | DR:           16 |  CR: ST 3 ABSOLUTE      |
+  INFO    machine:__print__     INSTR:  146 | AC   16 | BR   45 | IP:   36 | AR:   45 | DR:    687865892 |  CR: JUMP 36 DIRECT     |
+  INFO    machine:__print__     INSTR:  147 | AC    7 | BR   36 | IP:   37 | AR:   23 | DR:            7 |  CR: LD 23 ABSOLUTE     |
+  INFO    machine:__print__     INSTR:  148 | AC    7 | BR   37 | IP:   38 | AR:   37 | DR:    754974766 |  CR: BEQ 46 DIRECT      |
+  INFO    machine:__print__     INSTR:  149 | AC    6 | BR   38 | IP:   39 | AR:   38 | DR:   2214592512 |  CR: DEC 0 NO_ADDRESS   |
+  INFO    machine:__print__     INSTR:  150 | AC    6 | BR   39 | IP:   40 | AR:   23 | DR:            6 |  CR: ST 23 ABSOLUTE     |
+  INFO    machine:__print__     INSTR:  151 | AC  114 | BR   40 | IP:   41 | AR:   16 | DR:          114 |  CR: LD 3 RELATIVE      |
+  INFO    machine:decode_and_execute_instruction {output_buffer: ['W', 'h', 'a', 't', ' ', 'i', 's', ' ', 'y', 'o', 'u', 'r'] << r}
+  INFO    machine:__print__     INSTR:  152 | AC  114 | BR   41 | IP:   42 | AR:   41 | DR:   1476395008 |  CR: OUTC 0 NO_ADDRESS  |
+  INFO    machine:__print__     INSTR:  153 | AC   16 | BR   42 | IP:   43 | AR:    3 | DR:           16 |  CR: LD 3 ABSOLUTE      |
+  INFO    machine:__print__     INSTR:  154 | AC   17 | BR   43 | IP:   44 | AR:   43 | DR:   1073741824 |  CR: INC 0 NO_ADDRESS   |
+  INFO    machine:__print__     INSTR:  155 | AC   17 | BR   44 | IP:   45 | AR:    3 | DR:           17 |  CR: ST 3 ABSOLUTE      |
+  INFO    machine:__print__     INSTR:  156 | AC   17 | BR   45 | IP:   36 | AR:   45 | DR:    687865892 |  CR: JUMP 36 DIRECT     |
+  INFO    machine:__print__     INSTR:  157 | AC    6 | BR   36 | IP:   37 | AR:   23 | DR:            6 |  CR: LD 23 ABSOLUTE     |
+  INFO    machine:__print__     INSTR:  158 | AC    6 | BR   37 | IP:   38 | AR:   37 | DR:    754974766 |  CR: BEQ 46 DIRECT      |
+  INFO    machine:__print__     INSTR:  159 | AC    5 | BR   38 | IP:   39 | AR:   38 | DR:   2214592512 |  CR: DEC 0 NO_ADDRESS   |
+  INFO    machine:__print__     INSTR:  160 | AC    5 | BR   39 | IP:   40 | AR:   23 | DR:            5 |  CR: ST 23 ABSOLUTE     |
+  INFO    machine:__print__     INSTR:  161 | AC   32 | BR   40 | IP:   41 | AR:   17 | DR:           32 |  CR: LD 3 RELATIVE      |
+  INFO    machine:decode_and_execute_instruction {output_buffer: ['W', 'h', 'a', 't', ' ', 'i', 's', ' ', 'y', 'o', 'u', 'r', ' '] <<  }
+  INFO    machine:__print__     INSTR:  162 | AC   32 | BR   41 | IP:   42 | AR:   41 | DR:   1476395008 |  CR: OUTC 0 NO_ADDRESS  |
+  INFO    machine:__print__     INSTR:  163 | AC   17 | BR   42 | IP:   43 | AR:    3 | DR:           17 |  CR: LD 3 ABSOLUTE      |
+  INFO    machine:__print__     INSTR:  164 | AC   18 | BR   43 | IP:   44 | AR:   43 | DR:   1073741824 |  CR: INC 0 NO_ADDRESS   |
+  INFO    machine:__print__     INSTR:  165 | AC   18 | BR   44 | IP:   45 | AR:    3 | DR:           18 |  CR: ST 3 ABSOLUTE      |
+  INFO    machine:__print__     INSTR:  166 | AC   18 | BR   45 | IP:   36 | AR:   45 | DR:    687865892 |  CR: JUMP 36 DIRECT     |
+  INFO    machine:__print__     INSTR:  167 | AC    5 | BR   36 | IP:   37 | AR:   23 | DR:            5 |  CR: LD 23 ABSOLUTE     |
+  INFO    machine:__print__     INSTR:  168 | AC    5 | BR   37 | IP:   38 | AR:   37 | DR:    754974766 |  CR: BEQ 46 DIRECT      |
+  INFO    machine:__print__     INSTR:  169 | AC    4 | BR   38 | IP:   39 | AR:   38 | DR:   2214592512 |  CR: DEC 0 NO_ADDRESS   |
+  INFO    machine:__print__     INSTR:  170 | AC    4 | BR   39 | IP:   40 | AR:   23 | DR:            4 |  CR: ST 23 ABSOLUTE     |
+  INFO    machine:__print__     INSTR:  171 | AC  110 | BR   40 | IP:   41 | AR:   18 | DR:          110 |  CR: LD 3 RELATIVE      |
+  INFO    machine:decode_and_execute_instruction {output_buffer: ['W', 'h', 'a', 't', ' ', 'i', 's', ' ', 'y', 'o', 'u', 'r', ' ', 'n'] << n}
+  INFO    machine:__print__     INSTR:  172 | AC  110 | BR   41 | IP:   42 | AR:   41 | DR:   1476395008 |  CR: OUTC 0 NO_ADDRESS  |
+  INFO    machine:__print__     INSTR:  173 | AC   18 | BR   42 | IP:   43 | AR:    3 | DR:           18 |  CR: LD 3 ABSOLUTE      |
+  INFO    machine:__print__     INSTR:  174 | AC   19 | BR   43 | IP:   44 | AR:   43 | DR:   1073741824 |  CR: INC 0 NO_ADDRESS   |
+  INFO    machine:__print__     INSTR:  175 | AC   19 | BR   44 | IP:   45 | AR:    3 | DR:           19 |  CR: ST 3 ABSOLUTE      |
+  INFO    machine:__print__     INSTR:  176 | AC   19 | BR   45 | IP:   36 | AR:   45 | DR:    687865892 |  CR: JUMP 36 DIRECT     |
+  INFO    machine:__print__     INSTR:  177 | AC    4 | BR   36 | IP:   37 | AR:   23 | DR:            4 |  CR: LD 23 ABSOLUTE     |
+  INFO    machine:__print__     INSTR:  178 | AC    4 | BR   37 | IP:   38 | AR:   37 | DR:    754974766 |  CR: BEQ 46 DIRECT      |
+  INFO    machine:__print__     INSTR:  179 | AC    3 | BR   38 | IP:   39 | AR:   38 | DR:   2214592512 |  CR: DEC 0 NO_ADDRESS   |
+  INFO    machine:__print__     INSTR:  180 | AC    3 | BR   39 | IP:   40 | AR:   23 | DR:            3 |  CR: ST 23 ABSOLUTE     |
+  INFO    machine:__print__     INSTR:  181 | AC   97 | BR   40 | IP:   41 | AR:   19 | DR:           97 |  CR: LD 3 RELATIVE      |
+  INFO    machine:decode_and_execute_instruction {output_buffer: ['W', 'h', 'a', 't', ' ', 'i', 's', ' ', 'y', 'o', 'u', 'r', ' ', 'n', 'a'] << a}
+  INFO    machine:__print__     INSTR:  182 | AC   97 | BR   41 | IP:   42 | AR:   41 | DR:   1476395008 |  CR: OUTC 0 NO_ADDRESS  |
+  INFO    machine:__print__     INSTR:  183 | AC   19 | BR   42 | IP:   43 | AR:    3 | DR:           19 |  CR: LD 3 ABSOLUTE      |
+  INFO    machine:__print__     INSTR:  184 | AC   20 | BR   43 | IP:   44 | AR:   43 | DR:   1073741824 |  CR: INC 0 NO_ADDRESS   |
+  INFO    machine:__print__     INSTR:  185 | AC   20 | BR   44 | IP:   45 | AR:    3 | DR:           20 |  CR: ST 3 ABSOLUTE      |
+  INFO    machine:__print__     INSTR:  186 | AC   20 | BR   45 | IP:   36 | AR:   45 | DR:    687865892 |  CR: JUMP 36 DIRECT     |
+  INFO    machine:__print__     INSTR:  187 | AC    3 | BR   36 | IP:   37 | AR:   23 | DR:            3 |  CR: LD 23 ABSOLUTE     |
+  INFO    machine:__print__     INSTR:  188 | AC    3 | BR   37 | IP:   38 | AR:   37 | DR:    754974766 |  CR: BEQ 46 DIRECT      |
+  INFO    machine:__print__     INSTR:  189 | AC    2 | BR   38 | IP:   39 | AR:   38 | DR:   2214592512 |  CR: DEC 0 NO_ADDRESS   |
+  INFO    machine:__print__     INSTR:  190 | AC    2 | BR   39 | IP:   40 | AR:   23 | DR:            2 |  CR: ST 23 ABSOLUTE     |
+  INFO    machine:__print__     INSTR:  191 | AC  109 | BR   40 | IP:   41 | AR:   20 | DR:          109 |  CR: LD 3 RELATIVE      |
+  INFO    machine:decode_and_execute_instruction {output_buffer: ['W', 'h', 'a', 't', ' ', 'i', 's', ' ', 'y', 'o', 'u', 'r', ' ', 'n', 'a', 'm'] << m}
+  INFO    machine:__print__     INSTR:  192 | AC  109 | BR   41 | IP:   42 | AR:   41 | DR:   1476395008 |  CR: OUTC 0 NO_ADDRESS  |
+  INFO    machine:__print__     INSTR:  193 | AC   20 | BR   42 | IP:   43 | AR:    3 | DR:           20 |  CR: LD 3 ABSOLUTE      |
+  INFO    machine:__print__     INSTR:  194 | AC   21 | BR   43 | IP:   44 | AR:   43 | DR:   1073741824 |  CR: INC 0 NO_ADDRESS   |
+  INFO    machine:__print__     INSTR:  195 | AC   21 | BR   44 | IP:   45 | AR:    3 | DR:           21 |  CR: ST 3 ABSOLUTE      |
+  INFO    machine:__print__     INSTR:  196 | AC   21 | BR   45 | IP:   36 | AR:   45 | DR:    687865892 |  CR: JUMP 36 DIRECT     |
+  INFO    machine:__print__     INSTR:  197 | AC    2 | BR   36 | IP:   37 | AR:   23 | DR:            2 |  CR: LD 23 ABSOLUTE     |
+  INFO    machine:__print__     INSTR:  198 | AC    2 | BR   37 | IP:   38 | AR:   37 | DR:    754974766 |  CR: BEQ 46 DIRECT      |
+  INFO    machine:__print__     INSTR:  199 | AC    1 | BR   38 | IP:   39 | AR:   38 | DR:   2214592512 |  CR: DEC 0 NO_ADDRESS   |
+  INFO    machine:__print__     INSTR:  200 | AC    1 | BR   39 | IP:   40 | AR:   23 | DR:            1 |  CR: ST 23 ABSOLUTE     |
+  INFO    machine:__print__     INSTR:  201 | AC  101 | BR   40 | IP:   41 | AR:   21 | DR:          101 |  CR: LD 3 RELATIVE      |
+  INFO    machine:decode_and_execute_instruction {output_buffer: ['W', 'h', 'a', 't', ' ', 'i', 's', ' ', 'y', 'o', 'u', 'r', ' ', 'n', 'a', 'm', 'e'] << e}
+  INFO    machine:__print__     INSTR:  202 | AC  101 | BR   41 | IP:   42 | AR:   41 | DR:   1476395008 |  CR: OUTC 0 NO_ADDRESS  |
+  INFO    machine:__print__     INSTR:  203 | AC   21 | BR   42 | IP:   43 | AR:    3 | DR:           21 |  CR: LD 3 ABSOLUTE      |
+  INFO    machine:__print__     INSTR:  204 | AC   22 | BR   43 | IP:   44 | AR:   43 | DR:   1073741824 |  CR: INC 0 NO_ADDRESS   |
+  INFO    machine:__print__     INSTR:  205 | AC   22 | BR   44 | IP:   45 | AR:    3 | DR:           22 |  CR: ST 3 ABSOLUTE      |
+  INFO    machine:__print__     INSTR:  206 | AC   22 | BR   45 | IP:   36 | AR:   45 | DR:    687865892 |  CR: JUMP 36 DIRECT     |
+  INFO    machine:__print__     INSTR:  207 | AC    1 | BR   36 | IP:   37 | AR:   23 | DR:            1 |  CR: LD 23 ABSOLUTE     |
+  INFO    machine:__print__     INSTR:  208 | AC    1 | BR   37 | IP:   38 | AR:   37 | DR:    754974766 |  CR: BEQ 46 DIRECT      |
+  INFO    machine:__print__     INSTR:  209 | AC    0 | BR   38 | IP:   39 | AR:   38 | DR:   2214592512 |  CR: DEC 0 NO_ADDRESS   |
+  INFO    machine:__print__     INSTR:  210 | AC    0 | BR   39 | IP:   40 | AR:   23 | DR:            0 |  CR: ST 23 ABSOLUTE     |
+  INFO    machine:__print__     INSTR:  211 | AC   63 | BR   40 | IP:   41 | AR:   22 | DR:           63 |  CR: LD 3 RELATIVE      |
+  INFO    machine:decode_and_execute_instruction {output_buffer: ['W', 'h', 'a', 't', ' ', 'i', 's', ' ', 'y', 'o', 'u', 'r', ' ', 'n', 'a', 'm', 'e', '?'] << ?}
+  INFO    machine:__print__     INSTR:  212 | AC   63 | BR   41 | IP:   42 | AR:   41 | DR:   1476395008 |  CR: OUTC 0 NO_ADDRESS  |
+  INFO    machine:__print__     INSTR:  213 | AC   22 | BR   42 | IP:   43 | AR:    3 | DR:           22 |  CR: LD 3 ABSOLUTE      |
+  INFO    machine:__print__     INSTR:  214 | AC   23 | BR   43 | IP:   44 | AR:   43 | DR:   1073741824 |  CR: INC 0 NO_ADDRESS   |
+  INFO    machine:__print__     INSTR:  215 | AC   23 | BR   44 | IP:   45 | AR:    3 | DR:           23 |  CR: ST 3 ABSOLUTE      |
+  INFO    machine:__print__     INSTR:  216 | AC   23 | BR   45 | IP:   36 | AR:   45 | DR:    687865892 |  CR: JUMP 36 DIRECT     |
+  INFO    machine:__print__     INSTR:  217 | AC    0 | BR   36 | IP:   37 | AR:   23 | DR:            0 |  CR: LD 23 ABSOLUTE     |
+  INFO    machine:__print__     INSTR:  218 | AC    0 | BR   37 | IP:   46 | AR:   37 | DR:    754974766 |  CR: BEQ 46 DIRECT      |
+  INFO    machine:__print__     INSTR:  219 | AC    7 | BR   46 | IP:   47 | AR:   25 | DR:            7 |  CR: LD 25 ABSOLUTE     |
+  INFO    machine:__print__     INSTR:  220 | AC    7 | BR   47 | IP:   48 | AR:   33 | DR:            7 |  CR: ST 33 ABSOLUTE     |
+  INFO    machine:__print__     INSTR:  221 | AC    7 | BR   48 | IP:   49 | AR:   33 | DR:            7 |  CR: LD 33 ABSOLUTE     |
+  INFO    machine:__print__     INSTR:  222 | AC    7 | BR   49 | IP:   50 | AR:   49 | DR:    754974778 |  CR: BEQ 58 DIRECT      |
+  INFO    machine:__print__     INSTR:  223 | AC    6 | BR   50 | IP:   51 | AR:   50 | DR:   2214592512 |  CR: DEC 0 NO_ADDRESS   |
+  INFO    machine:__print__     INSTR:  224 | AC    6 | BR   51 | IP:   52 | AR:   33 | DR:            6 |  CR: ST 33 ABSOLUTE     |
+  INFO    machine:__print__     INSTR:  225 | AC   72 | BR   52 | IP:   53 | AR:   26 | DR:           72 |  CR: LD 24 RELATIVE     |
+  INFO    machine:decode_and_execute_instruction {output_buffer: ['W', 'h', 'a', 't', ' ', 'i', 's', ' ', 'y', 'o', 'u', 'r', ' ', 'n', 'a', 'm', 'e', '?', 'H'] << H}
+  INFO    machine:__print__     INSTR:  226 | AC   72 | BR   53 | IP:   54 | AR:   53 | DR:   1476395008 |  CR: OUTC 0 NO_ADDRESS  |
+  INFO    machine:__print__     INSTR:  227 | AC   26 | BR   54 | IP:   55 | AR:   24 | DR:           26 |  CR: LD 24 ABSOLUTE     |
+  INFO    machine:__print__     INSTR:  228 | AC   27 | BR   55 | IP:   56 | AR:   55 | DR:   1073741824 |  CR: INC 0 NO_ADDRESS   |
+  INFO    machine:__print__     INSTR:  229 | AC   27 | BR   56 | IP:   57 | AR:   24 | DR:           27 |  CR: ST 24 ABSOLUTE     |
+  INFO    machine:__print__     INSTR:  230 | AC   27 | BR   57 | IP:   48 | AR:   57 | DR:    687865904 |  CR: JUMP 48 DIRECT     |
+  INFO    machine:__print__     INSTR:  231 | AC    6 | BR   48 | IP:   49 | AR:   33 | DR:            6 |  CR: LD 33 ABSOLUTE     |
+  INFO    machine:__print__     INSTR:  232 | AC    6 | BR   49 | IP:   50 | AR:   49 | DR:    754974778 |  CR: BEQ 58 DIRECT      |
+  INFO    machine:__print__     INSTR:  233 | AC    5 | BR   50 | IP:   51 | AR:   50 | DR:   2214592512 |  CR: DEC 0 NO_ADDRESS   |
+  INFO    machine:__print__     INSTR:  234 | AC    5 | BR   51 | IP:   52 | AR:   33 | DR:            5 |  CR: ST 33 ABSOLUTE     |
+  INFO    machine:__print__     INSTR:  235 | AC  101 | BR   52 | IP:   53 | AR:   27 | DR:          101 |  CR: LD 24 RELATIVE     |
+  INFO    machine:decode_and_execute_instruction {output_buffer: ['W', 'h', 'a', 't', ' ', 'i', 's', ' ', 'y', 'o', 'u', 'r', ' ', 'n', 'a', 'm', 'e', '?', 'H', 'e'] << e}
+  INFO    machine:__print__     INSTR:  236 | AC  101 | BR   53 | IP:   54 | AR:   53 | DR:   1476395008 |  CR: OUTC 0 NO_ADDRESS  |
+  INFO    machine:__print__     INSTR:  237 | AC   27 | BR   54 | IP:   55 | AR:   24 | DR:           27 |  CR: LD 24 ABSOLUTE     |
+  INFO    machine:__print__     INSTR:  238 | AC   28 | BR   55 | IP:   56 | AR:   55 | DR:   1073741824 |  CR: INC 0 NO_ADDRESS   |
+  INFO    machine:__print__     INSTR:  239 | AC   28 | BR   56 | IP:   57 | AR:   24 | DR:           28 |  CR: ST 24 ABSOLUTE     |
+  INFO    machine:__print__     INSTR:  240 | AC   28 | BR   57 | IP:   48 | AR:   57 | DR:    687865904 |  CR: JUMP 48 DIRECT     |
+  INFO    machine:__print__     INSTR:  241 | AC    5 | BR   48 | IP:   49 | AR:   33 | DR:            5 |  CR: LD 33 ABSOLUTE     |
+  INFO    machine:__print__     INSTR:  242 | AC    5 | BR   49 | IP:   50 | AR:   49 | DR:    754974778 |  CR: BEQ 58 DIRECT      |
+  INFO    machine:__print__     INSTR:  243 | AC    4 | BR   50 | IP:   51 | AR:   50 | DR:   2214592512 |  CR: DEC 0 NO_ADDRESS   |
+  INFO    machine:__print__     INSTR:  244 | AC    4 | BR   51 | IP:   52 | AR:   33 | DR:            4 |  CR: ST 33 ABSOLUTE     |
+  INFO    machine:__print__     INSTR:  245 | AC  108 | BR   52 | IP:   53 | AR:   28 | DR:          108 |  CR: LD 24 RELATIVE     |
+  INFO    machine:decode_and_execute_instruction {output_buffer: ['W', 'h', 'a', 't', ' ', 'i', 's', ' ', 'y', 'o', 'u', 'r', ' ', 'n', 'a', 'm', 'e', '?', 'H', 'e', 'l'] << l}
+  INFO    machine:__print__     INSTR:  246 | AC  108 | BR   53 | IP:   54 | AR:   53 | DR:   1476395008 |  CR: OUTC 0 NO_ADDRESS  |
+  INFO    machine:__print__     INSTR:  247 | AC   28 | BR   54 | IP:   55 | AR:   24 | DR:           28 |  CR: LD 24 ABSOLUTE     |
+  INFO    machine:__print__     INSTR:  248 | AC   29 | BR   55 | IP:   56 | AR:   55 | DR:   1073741824 |  CR: INC 0 NO_ADDRESS   |
+  INFO    machine:__print__     INSTR:  249 | AC   29 | BR   56 | IP:   57 | AR:   24 | DR:           29 |  CR: ST 24 ABSOLUTE     |
+  INFO    machine:__print__     INSTR:  250 | AC   29 | BR   57 | IP:   48 | AR:   57 | DR:    687865904 |  CR: JUMP 48 DIRECT     |
+  INFO    machine:__print__     INSTR:  251 | AC    4 | BR   48 | IP:   49 | AR:   33 | DR:            4 |  CR: LD 33 ABSOLUTE     |
+  INFO    machine:__print__     INSTR:  252 | AC    4 | BR   49 | IP:   50 | AR:   49 | DR:    754974778 |  CR: BEQ 58 DIRECT      |
+  INFO    machine:__print__     INSTR:  253 | AC    3 | BR   50 | IP:   51 | AR:   50 | DR:   2214592512 |  CR: DEC 0 NO_ADDRESS   |
+  INFO    machine:__print__     INSTR:  254 | AC    3 | BR   51 | IP:   52 | AR:   33 | DR:            3 |  CR: ST 33 ABSOLUTE     |
+  INFO    machine:__print__     INSTR:  255 | AC  108 | BR   52 | IP:   53 | AR:   29 | DR:          108 |  CR: LD 24 RELATIVE     |
+  INFO    machine:decode_and_execute_instruction {output_buffer: ['W', 'h', 'a', 't', ' ', 'i', 's', ' ', 'y', 'o', 'u', 'r', ' ', 'n', 'a', 'm', 'e', '?', 'H', 'e', 'l', 'l'] << l}
+  INFO    machine:__print__     INSTR:  256 | AC  108 | BR   53 | IP:   54 | AR:   53 | DR:   1476395008 |  CR: OUTC 0 NO_ADDRESS  |
+  INFO    machine:__print__     INSTR:  257 | AC   29 | BR   54 | IP:   55 | AR:   24 | DR:           29 |  CR: LD 24 ABSOLUTE     |
+  INFO    machine:__print__     INSTR:  258 | AC   30 | BR   55 | IP:   56 | AR:   55 | DR:   1073741824 |  CR: INC 0 NO_ADDRESS   |
+  INFO    machine:__print__     INSTR:  259 | AC   30 | BR   56 | IP:   57 | AR:   24 | DR:           30 |  CR: ST 24 ABSOLUTE     |
+  INFO    machine:__print__     INSTR:  260 | AC   30 | BR   57 | IP:   48 | AR:   57 | DR:    687865904 |  CR: JUMP 48 DIRECT     |
+  INFO    machine:__print__     INSTR:  261 | AC    3 | BR   48 | IP:   49 | AR:   33 | DR:            3 |  CR: LD 33 ABSOLUTE     |
+  INFO    machine:__print__     INSTR:  262 | AC    3 | BR   49 | IP:   50 | AR:   49 | DR:    754974778 |  CR: BEQ 58 DIRECT      |
+  INFO    machine:__print__     INSTR:  263 | AC    2 | BR   50 | IP:   51 | AR:   50 | DR:   2214592512 |  CR: DEC 0 NO_ADDRESS   |
+  INFO    machine:__print__     INSTR:  264 | AC    2 | BR   51 | IP:   52 | AR:   33 | DR:            2 |  CR: ST 33 ABSOLUTE     |
+  INFO    machine:__print__     INSTR:  265 | AC  111 | BR   52 | IP:   53 | AR:   30 | DR:          111 |  CR: LD 24 RELATIVE     |
+  INFO    machine:decode_and_execute_instruction {output_buffer: ['W', 'h', 'a', 't', ' ', 'i', 's', ' ', 'y', 'o', 'u', 'r', ' ', 'n', 'a', 'm', 'e', '?', 'H', 'e', 'l', 'l', 'o'] << o}
+  INFO    machine:__print__     INSTR:  266 | AC  111 | BR   53 | IP:   54 | AR:   53 | DR:   1476395008 |  CR: OUTC 0 NO_ADDRESS  |
+  INFO    machine:__print__     INSTR:  267 | AC   30 | BR   54 | IP:   55 | AR:   24 | DR:           30 |  CR: LD 24 ABSOLUTE     |
+  INFO    machine:__print__     INSTR:  268 | AC   31 | BR   55 | IP:   56 | AR:   55 | DR:   1073741824 |  CR: INC 0 NO_ADDRESS   |
+  INFO    machine:__print__     INSTR:  269 | AC   31 | BR   56 | IP:   57 | AR:   24 | DR:           31 |  CR: ST 24 ABSOLUTE     |
+  INFO    machine:__print__     INSTR:  270 | AC   31 | BR   57 | IP:   48 | AR:   57 | DR:    687865904 |  CR: JUMP 48 DIRECT     |
+  INFO    machine:__print__     INSTR:  271 | AC    2 | BR   48 | IP:   49 | AR:   33 | DR:            2 |  CR: LD 33 ABSOLUTE     |
+  INFO    machine:__print__     INSTR:  272 | AC    2 | BR   49 | IP:   50 | AR:   49 | DR:    754974778 |  CR: BEQ 58 DIRECT      |
+  INFO    machine:__print__     INSTR:  273 | AC    1 | BR   50 | IP:   51 | AR:   50 | DR:   2214592512 |  CR: DEC 0 NO_ADDRESS   |
+  INFO    machine:__print__     INSTR:  274 | AC    1 | BR   51 | IP:   52 | AR:   33 | DR:            1 |  CR: ST 33 ABSOLUTE     |
+  INFO    machine:__print__     INSTR:  275 | AC   44 | BR   52 | IP:   53 | AR:   31 | DR:           44 |  CR: LD 24 RELATIVE     |
+  INFO    machine:decode_and_execute_instruction {output_buffer: ['W', 'h', 'a', 't', ' ', 'i', 's', ' ', 'y', 'o', 'u', 'r', ' ', 'n', 'a', 'm', 'e', '?', 'H', 'e', 'l', 'l', 'o', ','] << ,}
+  INFO    machine:__print__     INSTR:  276 | AC   44 | BR   53 | IP:   54 | AR:   53 | DR:   1476395008 |  CR: OUTC 0 NO_ADDRESS  |
+  INFO    machine:__print__     INSTR:  277 | AC   31 | BR   54 | IP:   55 | AR:   24 | DR:           31 |  CR: LD 24 ABSOLUTE     |
+  INFO    machine:__print__     INSTR:  278 | AC   32 | BR   55 | IP:   56 | AR:   55 | DR:   1073741824 |  CR: INC 0 NO_ADDRESS   |
+  INFO    machine:__print__     INSTR:  279 | AC   32 | BR   56 | IP:   57 | AR:   24 | DR:           32 |  CR: ST 24 ABSOLUTE     |
+  INFO    machine:__print__     INSTR:  280 | AC   32 | BR   57 | IP:   48 | AR:   57 | DR:    687865904 |  CR: JUMP 48 DIRECT     |
+  INFO    machine:__print__     INSTR:  281 | AC    1 | BR   48 | IP:   49 | AR:   33 | DR:            1 |  CR: LD 33 ABSOLUTE     |
+  INFO    machine:__print__     INSTR:  282 | AC    1 | BR   49 | IP:   50 | AR:   49 | DR:    754974778 |  CR: BEQ 58 DIRECT      |
+  INFO    machine:__print__     INSTR:  283 | AC    0 | BR   50 | IP:   51 | AR:   50 | DR:   2214592512 |  CR: DEC 0 NO_ADDRESS   |
+  INFO    machine:__print__     INSTR:  284 | AC    0 | BR   51 | IP:   52 | AR:   33 | DR:            0 |  CR: ST 33 ABSOLUTE     |
+  INFO    machine:__print__     INSTR:  285 | AC   32 | BR   52 | IP:   53 | AR:   32 | DR:           32 |  CR: LD 24 RELATIVE     |
+  INFO    machine:decode_and_execute_instruction {output_buffer: ['W', 'h', 'a', 't', ' ', 'i', 's', ' ', 'y', 'o', 'u', 'r', ' ', 'n', 'a', 'm', 'e', '?', 'H', 'e', 'l', 'l', 'o', ',', ' '] <<  }
+  INFO    machine:__print__     INSTR:  286 | AC   32 | BR   53 | IP:   54 | AR:   53 | DR:   1476395008 |  CR: OUTC 0 NO_ADDRESS  |
+  INFO    machine:__print__     INSTR:  287 | AC   32 | BR   54 | IP:   55 | AR:   24 | DR:           32 |  CR: LD 24 ABSOLUTE     |
+  INFO    machine:__print__     INSTR:  288 | AC   33 | BR   55 | IP:   56 | AR:   55 | DR:   1073741824 |  CR: INC 0 NO_ADDRESS   |
+  INFO    machine:__print__     INSTR:  289 | AC   33 | BR   56 | IP:   57 | AR:   24 | DR:           33 |  CR: ST 24 ABSOLUTE     |
+  INFO    machine:__print__     INSTR:  290 | AC   33 | BR   57 | IP:   48 | AR:   57 | DR:    687865904 |  CR: JUMP 48 DIRECT     |
+  INFO    machine:__print__     INSTR:  291 | AC    0 | BR   48 | IP:   49 | AR:   33 | DR:            0 |  CR: LD 33 ABSOLUTE     |
+  INFO    machine:__print__     INSTR:  292 | AC    0 | BR   49 | IP:   58 | AR:   49 | DR:    754974778 |  CR: BEQ 58 DIRECT      |
+  INFO    machine:decode_and_execute_instruction {info_buffer: ['L', 'a', 'r', 'i', 's', 'a', '\x00'] >> 76}
+  INFO    machine:__print__     INSTR:  293 | AC   76 | BR   58 | IP:   59 | AR:   58 | DR:   1409286144 |  CR: IN 0 NO_ADDRESS    |
+  INFO    machine:__print__     INSTR:  294 | AC   76 | BR   59 | IP:   60 | AR:    2 | DR:           76 |  CR: ST 2 ABSOLUTE      |
+  INFO    machine:__print__     INSTR:  295 | AC   76 | BR   60 | IP:   61 | AR:    2 | DR:           76 |  CR: LD 2 ABSOLUTE      |
+  INFO    machine:__print__     INSTR:  296 | AC   76 | BR   61 | IP:   62 | AR:    0 | DR:           76 |  CR: ST 0 ABSOLUTE      |
+  INFO    machine:__print__     INSTR:  297 | AC    0 | BR    0 | IP:   63 | AR:   62 | DR:            0 |  CR: LD 0 DIRECT        |
+  INFO    machine:__print__     INSTR:  298 | AC    0 | BR   63 | IP:   64 | AR:    1 | DR:            0 |  CR: ST 1 ABSOLUTE      |
+  INFO    machine:__print__     INSTR:  299 | AC   76 | BR   64 | IP:   65 | AR:    0 | DR:           76 |  CR: LD 0 ABSOLUTE      |
+  INFO    machine:__print__     INSTR:  300 | AC   76 | BR   65 | IP:   66 | AR:    1 | DR:            0 |  CR: CMP 1 ABSOLUTE     |
+  INFO    machine:__print__     INSTR:  301 | AC   76 | BR   66 | IP:   67 | AR:   66 | DR:    956301384 |  CR: BLE 72 DIRECT      |
+  INFO    machine:__print__     INSTR:  302 | AC   76 | BR   67 | IP:   68 | AR:    2 | DR:           76 |  CR: LD 2 ABSOLUTE      |
+  INFO    machine:decode_and_execute_instruction {output_buffer: ['W', 'h', 'a', 't', ' ', 'i', 's', ' ', 'y', 'o', 'u', 'r', ' ', 'n', 'a', 'm', 'e', '?', 'H', 'e', 'l', 'l', 'o', ',', ' ', 'L'] << L}
+  INFO    machine:__print__     INSTR:  303 | AC   76 | BR   68 | IP:   69 | AR:   68 | DR:   1476395008 |  CR: OUTC 0 NO_ADDRESS  |
+  INFO    machine:decode_and_execute_instruction {info_buffer: ['L', 'a', 'r', 'i', 's', 'a', '\x00'] >> 97}
+  INFO    machine:__print__     INSTR:  304 | AC   97 | BR   69 | IP:   70 | AR:   69 | DR:   1409286144 |  CR: IN 0 NO_ADDRESS    |
+  INFO    machine:__print__     INSTR:  305 | AC   97 | BR   70 | IP:   71 | AR:    2 | DR:           97 |  CR: ST 2 ABSOLUTE      |
+  INFO    machine:__print__     INSTR:  306 | AC   97 | BR   71 | IP:   60 | AR:   71 | DR:    687865916 |  CR: JUMP 60 DIRECT     |
+  INFO    machine:__print__     INSTR:  307 | AC   97 | BR   60 | IP:   61 | AR:    2 | DR:           97 |  CR: LD 2 ABSOLUTE      |
+  INFO    machine:__print__     INSTR:  308 | AC   97 | BR   61 | IP:   62 | AR:    0 | DR:           97 |  CR: ST 0 ABSOLUTE      |
+  INFO    machine:__print__     INSTR:  309 | AC    0 | BR    0 | IP:   63 | AR:   62 | DR:            0 |  CR: LD 0 DIRECT        |
+  INFO    machine:__print__     INSTR:  310 | AC    0 | BR   63 | IP:   64 | AR:    1 | DR:            0 |  CR: ST 1 ABSOLUTE      |
+  INFO    machine:__print__     INSTR:  311 | AC   97 | BR   64 | IP:   65 | AR:    0 | DR:           97 |  CR: LD 0 ABSOLUTE      |
+  INFO    machine:__print__     INSTR:  312 | AC   97 | BR   65 | IP:   66 | AR:    1 | DR:            0 |  CR: CMP 1 ABSOLUTE     |
+  INFO    machine:__print__     INSTR:  313 | AC   97 | BR   66 | IP:   67 | AR:   66 | DR:    956301384 |  CR: BLE 72 DIRECT      |
+  INFO    machine:__print__     INSTR:  314 | AC   97 | BR   67 | IP:   68 | AR:    2 | DR:           97 |  CR: LD 2 ABSOLUTE      |
+  INFO    machine:decode_and_execute_instruction {output_buffer: ['W', 'h', 'a', 't', ' ', 'i', 's', ' ', 'y', 'o', 'u', 'r', ' ', 'n', 'a', 'm', 'e', '?', 'H', 'e', 'l', 'l', 'o', ',', ' ', 'L', 'a'] << a}
+  INFO    machine:__print__     INSTR:  315 | AC   97 | BR   68 | IP:   69 | AR:   68 | DR:   1476395008 |  CR: OUTC 0 NO_ADDRESS  |
+  INFO    machine:decode_and_execute_instruction {info_buffer: ['L', 'a', 'r', 'i', 's', 'a', '\x00'] >> 114}
+  INFO    machine:__print__     INSTR:  316 | AC  114 | BR   69 | IP:   70 | AR:   69 | DR:   1409286144 |  CR: IN 0 NO_ADDRESS    |
+  INFO    machine:__print__     INSTR:  317 | AC  114 | BR   70 | IP:   71 | AR:    2 | DR:          114 |  CR: ST 2 ABSOLUTE      |
+  INFO    machine:__print__     INSTR:  318 | AC  114 | BR   71 | IP:   60 | AR:   71 | DR:    687865916 |  CR: JUMP 60 DIRECT     |
+  INFO    machine:__print__     INSTR:  319 | AC  114 | BR   60 | IP:   61 | AR:    2 | DR:          114 |  CR: LD 2 ABSOLUTE      |
+  INFO    machine:__print__     INSTR:  320 | AC  114 | BR   61 | IP:   62 | AR:    0 | DR:          114 |  CR: ST 0 ABSOLUTE      |
+  INFO    machine:__print__     INSTR:  321 | AC    0 | BR    0 | IP:   63 | AR:   62 | DR:            0 |  CR: LD 0 DIRECT        |
+  INFO    machine:__print__     INSTR:  322 | AC    0 | BR   63 | IP:   64 | AR:    1 | DR:            0 |  CR: ST 1 ABSOLUTE      |
+  INFO    machine:__print__     INSTR:  323 | AC  114 | BR   64 | IP:   65 | AR:    0 | DR:          114 |  CR: LD 0 ABSOLUTE      |
+  INFO    machine:__print__     INSTR:  324 | AC  114 | BR   65 | IP:   66 | AR:    1 | DR:            0 |  CR: CMP 1 ABSOLUTE     |
+  INFO    machine:__print__     INSTR:  325 | AC  114 | BR   66 | IP:   67 | AR:   66 | DR:    956301384 |  CR: BLE 72 DIRECT      |
+  INFO    machine:__print__     INSTR:  326 | AC  114 | BR   67 | IP:   68 | AR:    2 | DR:          114 |  CR: LD 2 ABSOLUTE      |
+  INFO    machine:decode_and_execute_instruction {output_buffer: ['W', 'h', 'a', 't', ' ', 'i', 's', ' ', 'y', 'o', 'u', 'r', ' ', 'n', 'a', 'm', 'e', '?', 'H', 'e', 'l', 'l', 'o', ',', ' ', 'L', 'a', 'r'] << r}
+  INFO    machine:__print__     INSTR:  327 | AC  114 | BR   68 | IP:   69 | AR:   68 | DR:   1476395008 |  CR: OUTC 0 NO_ADDRESS  |
+  INFO    machine:decode_and_execute_instruction {info_buffer: ['L', 'a', 'r', 'i', 's', 'a', '\x00'] >> 105}
+  INFO    machine:__print__     INSTR:  328 | AC  105 | BR   69 | IP:   70 | AR:   69 | DR:   1409286144 |  CR: IN 0 NO_ADDRESS    |
+  INFO    machine:__print__     INSTR:  329 | AC  105 | BR   70 | IP:   71 | AR:    2 | DR:          105 |  CR: ST 2 ABSOLUTE      |
+  INFO    machine:__print__     INSTR:  330 | AC  105 | BR   71 | IP:   60 | AR:   71 | DR:    687865916 |  CR: JUMP 60 DIRECT     |
+  INFO    machine:__print__     INSTR:  331 | AC  105 | BR   60 | IP:   61 | AR:    2 | DR:          105 |  CR: LD 2 ABSOLUTE      |
+  INFO    machine:__print__     INSTR:  332 | AC  105 | BR   61 | IP:   62 | AR:    0 | DR:          105 |  CR: ST 0 ABSOLUTE      |
+  INFO    machine:__print__     INSTR:  333 | AC    0 | BR    0 | IP:   63 | AR:   62 | DR:            0 |  CR: LD 0 DIRECT        |
+  INFO    machine:__print__     INSTR:  334 | AC    0 | BR   63 | IP:   64 | AR:    1 | DR:            0 |  CR: ST 1 ABSOLUTE      |
+  INFO    machine:__print__     INSTR:  335 | AC  105 | BR   64 | IP:   65 | AR:    0 | DR:          105 |  CR: LD 0 ABSOLUTE      |
+  INFO    machine:__print__     INSTR:  336 | AC  105 | BR   65 | IP:   66 | AR:    1 | DR:            0 |  CR: CMP 1 ABSOLUTE     |
+  INFO    machine:__print__     INSTR:  337 | AC  105 | BR   66 | IP:   67 | AR:   66 | DR:    956301384 |  CR: BLE 72 DIRECT      |
+  INFO    machine:__print__     INSTR:  338 | AC  105 | BR   67 | IP:   68 | AR:    2 | DR:          105 |  CR: LD 2 ABSOLUTE      |
+  INFO    machine:decode_and_execute_instruction {output_buffer: ['W', 'h', 'a', 't', ' ', 'i', 's', ' ', 'y', 'o', 'u', 'r', ' ', 'n', 'a', 'm', 'e', '?', 'H', 'e', 'l', 'l', 'o', ',', ' ', 'L', 'a', 'r', 'i'] << i}
+  INFO    machine:__print__     INSTR:  339 | AC  105 | BR   68 | IP:   69 | AR:   68 | DR:   1476395008 |  CR: OUTC 0 NO_ADDRESS  |
+  INFO    machine:decode_and_execute_instruction {info_buffer: ['L', 'a', 'r', 'i', 's', 'a', '\x00'] >> 115}
+  INFO    machine:__print__     INSTR:  340 | AC  115 | BR   69 | IP:   70 | AR:   69 | DR:   1409286144 |  CR: IN 0 NO_ADDRESS    |
+  INFO    machine:__print__     INSTR:  341 | AC  115 | BR   70 | IP:   71 | AR:    2 | DR:          115 |  CR: ST 2 ABSOLUTE      |
+  INFO    machine:__print__     INSTR:  342 | AC  115 | BR   71 | IP:   60 | AR:   71 | DR:    687865916 |  CR: JUMP 60 DIRECT     |
+  INFO    machine:__print__     INSTR:  343 | AC  115 | BR   60 | IP:   61 | AR:    2 | DR:          115 |  CR: LD 2 ABSOLUTE      |
+  INFO    machine:__print__     INSTR:  344 | AC  115 | BR   61 | IP:   62 | AR:    0 | DR:          115 |  CR: ST 0 ABSOLUTE      |
+  INFO    machine:__print__     INSTR:  345 | AC    0 | BR    0 | IP:   63 | AR:   62 | DR:            0 |  CR: LD 0 DIRECT        |
+  INFO    machine:__print__     INSTR:  346 | AC    0 | BR   63 | IP:   64 | AR:    1 | DR:            0 |  CR: ST 1 ABSOLUTE      |
+  INFO    machine:__print__     INSTR:  347 | AC  115 | BR   64 | IP:   65 | AR:    0 | DR:          115 |  CR: LD 0 ABSOLUTE      |
+  INFO    machine:__print__     INSTR:  348 | AC  115 | BR   65 | IP:   66 | AR:    1 | DR:            0 |  CR: CMP 1 ABSOLUTE     |
+  INFO    machine:__print__     INSTR:  349 | AC  115 | BR   66 | IP:   67 | AR:   66 | DR:    956301384 |  CR: BLE 72 DIRECT      |
+  INFO    machine:__print__     INSTR:  350 | AC  115 | BR   67 | IP:   68 | AR:    2 | DR:          115 |  CR: LD 2 ABSOLUTE      |
+  INFO    machine:decode_and_execute_instruction {output_buffer: ['W', 'h', 'a', 't', ' ', 'i', 's', ' ', 'y', 'o', 'u', 'r', ' ', 'n', 'a', 'm', 'e', '?', 'H', 'e', 'l', 'l', 'o', ',', ' ', 'L', 'a', 'r', 'i', 's'] << s}
+  INFO    machine:__print__     INSTR:  351 | AC  115 | BR   68 | IP:   69 | AR:   68 | DR:   1476395008 |  CR: OUTC 0 NO_ADDRESS  |
+  INFO    machine:decode_and_execute_instruction {info_buffer: ['L', 'a', 'r', 'i', 's', 'a', '\x00'] >> 97}
+  INFO    machine:__print__     INSTR:  352 | AC   97 | BR   69 | IP:   70 | AR:   69 | DR:   1409286144 |  CR: IN 0 NO_ADDRESS    |
+  INFO    machine:__print__     INSTR:  353 | AC   97 | BR   70 | IP:   71 | AR:    2 | DR:           97 |  CR: ST 2 ABSOLUTE      |
+  INFO    machine:__print__     INSTR:  354 | AC   97 | BR   71 | IP:   60 | AR:   71 | DR:    687865916 |  CR: JUMP 60 DIRECT     |
+  INFO    machine:__print__     INSTR:  355 | AC   97 | BR   60 | IP:   61 | AR:    2 | DR:           97 |  CR: LD 2 ABSOLUTE      |
+  INFO    machine:__print__     INSTR:  356 | AC   97 | BR   61 | IP:   62 | AR:    0 | DR:           97 |  CR: ST 0 ABSOLUTE      |
+  INFO    machine:__print__     INSTR:  357 | AC    0 | BR    0 | IP:   63 | AR:   62 | DR:            0 |  CR: LD 0 DIRECT        |
+  INFO    machine:__print__     INSTR:  358 | AC    0 | BR   63 | IP:   64 | AR:    1 | DR:            0 |  CR: ST 1 ABSOLUTE      |
+  INFO    machine:__print__     INSTR:  359 | AC   97 | BR   64 | IP:   65 | AR:    0 | DR:           97 |  CR: LD 0 ABSOLUTE      |
+  INFO    machine:__print__     INSTR:  360 | AC   97 | BR   65 | IP:   66 | AR:    1 | DR:            0 |  CR: CMP 1 ABSOLUTE     |
+  INFO    machine:__print__     INSTR:  361 | AC   97 | BR   66 | IP:   67 | AR:   66 | DR:    956301384 |  CR: BLE 72 DIRECT      |
+  INFO    machine:__print__     INSTR:  362 | AC   97 | BR   67 | IP:   68 | AR:    2 | DR:           97 |  CR: LD 2 ABSOLUTE      |
+  INFO    machine:decode_and_execute_instruction {output_buffer: ['W', 'h', 'a', 't', ' ', 'i', 's', ' ', 'y', 'o', 'u', 'r', ' ', 'n', 'a', 'm', 'e', '?', 'H', 'e', 'l', 'l', 'o', ',', ' ', 'L', 'a', 'r', 'i', 's', 'a'] << a}        
+  INFO    machine:__print__     INSTR:  363 | AC   97 | BR   68 | IP:   69 | AR:   68 | DR:   1476395008 |  CR: OUTC 0 NO_ADDRESS  |
+  INFO    machine:decode_and_execute_instruction {info_buffer: ['L', 'a', 'r', 'i', 's', 'a', '\x00'] >> 0}
+  INFO    machine:__print__     INSTR:  364 | AC    0 | BR   69 | IP:   70 | AR:   69 | DR:   1409286144 |  CR: IN 0 NO_ADDRESS    |
+  INFO    machine:__print__     INSTR:  365 | AC    0 | BR   70 | IP:   71 | AR:    2 | DR:            0 |  CR: ST 2 ABSOLUTE      |
+  INFO    machine:__print__     INSTR:  366 | AC    0 | BR   71 | IP:   60 | AR:   71 | DR:    687865916 |  CR: JUMP 60 DIRECT     |
+  INFO    machine:__print__     INSTR:  367 | AC    0 | BR   60 | IP:   61 | AR:    2 | DR:            0 |  CR: LD 2 ABSOLUTE      |
+  INFO    machine:__print__     INSTR:  368 | AC    0 | BR   61 | IP:   62 | AR:    0 | DR:            0 |  CR: ST 0 ABSOLUTE      |
+  INFO    machine:__print__     INSTR:  369 | AC    0 | BR    0 | IP:   63 | AR:   62 | DR:            0 |  CR: LD 0 DIRECT        |
+  INFO    machine:__print__     INSTR:  370 | AC    0 | BR   63 | IP:   64 | AR:    1 | DR:            0 |  CR: ST 1 ABSOLUTE      |
+  INFO    machine:__print__     INSTR:  371 | AC    0 | BR   64 | IP:   65 | AR:    0 | DR:            0 |  CR: LD 0 ABSOLUTE      |
+  INFO    machine:__print__     INSTR:  372 | AC    0 | BR   65 | IP:   66 | AR:    1 | DR:            0 |  CR: CMP 1 ABSOLUTE     |
+  INFO    machine:__print__     INSTR:  373 | AC    0 | BR   66 | IP:   72 | AR:   66 | DR:    956301384 |  CR: BLE 72 DIRECT      |
+
+
