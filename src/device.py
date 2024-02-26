@@ -1,6 +1,4 @@
-
 class Device:
-
     def __init__(self):
         self.io = 0
         self.input = []

@@ -6,12 +6,12 @@ from isa import AddressingMode, Opcode, parser_to_name_instr
 from device import Device
 from isa import read_code
 
-START_ADDR = 0  #cat 3/ hello 15 / hello user / prob1 24
+START_ADDR = 0  # cat 3/ hello 15 / hello user / prob1 24
 MEMORY_SIZE = 2048
 WORD_SIZE = 32
 WORD_INIT = 0
 MAX_WORD = int(2 ** (WORD_SIZE - 1) - 1)
-MIN_WORD = int(-2 ** (WORD_SIZE - 1))
+MIN_WORD = int(-(2 ** (WORD_SIZE - 1)))
 MAX_ADDR = MEMORY_SIZE - 1
 
 
@@ -35,8 +35,7 @@ opcode_to_alu_operation = {
     Opcode.CMP: AluOperation.SUB,
     Opcode.INC: AluOperation.INC,
     Opcode.DEC: AluOperation.DEC,
-    Opcode.CLA: AluOperation.CLA
-
+    Opcode.CLA: AluOperation.CLA,
 }
 
 
@@ -55,12 +54,12 @@ class ALU:
     @staticmethod
     def check_value(val: int):
         if val > MAX_WORD or val < MIN_WORD:
-            raise Exceptions('Overflow error!')
+            raise Exceptions("Overflow error!")
         return val
 
     def alu_calculate(self, left, right, operation: AluOperation, sel_left: bool = True, sel_right: bool = True):
         left_operand = int(left, 2) if sel_left else 0
-        right_operand = int(right,2) if sel_right else 0
+        right_operand = int(right, 2) if sel_right else 0
         res = None
         if operation == AluOperation.ADD:
             res = left_operand + right_operand
@@ -73,12 +72,12 @@ class ALU:
 
         elif operation == AluOperation.DIV:
             if not right_operand:
-                raise Exceptions('Error! Trying to get DIV operation from 0')
+                raise Exceptions("Error! Trying to get DIV operation from 0")
             res = left_operand // right_operand
 
         elif operation == AluOperation.MOD:
             if not right_operand:
-                raise Exceptions('Error! Trying to get MOD operation from 0')
+                raise Exceptions("Error! Trying to get MOD operation from 0")
             res = left_operand % right_operand
 
         elif operation == AluOperation.INC:
@@ -102,7 +101,7 @@ class DataPath:
     def __init__(self, program: list):
         self.memory = program
         for _ in range(len(self.memory), MEMORY_SIZE):
-            self.memory.append('00000001000000000000000000000000')
+            self.memory.append("00000001000000000000000000000000")
 
     def get_reg(self, reg):
         return self.registers[reg]
@@ -111,14 +110,13 @@ class DataPath:
         self.registers[reg] = val
 
     def wr(self):
-        self.memory[self.registers["AR"]] = '00000000' + str(self.registers["DR"])
+        self.memory[self.registers["AR"]] = "00000000" + str(self.registers["DR"])
 
     def rd(self):
         self.registers["DR"] = self.memory[self.registers["AR"]]
 
 
 class ControlUnit:
-
     def __init__(self, program: list, device: Device, data_path):
         self.memory = program.copy()
         self.data_path = data_path
@@ -168,7 +166,7 @@ class ControlUnit:
         self.sig_latch_reg("AR", self.get_reg("IP"))
         self.sig_latch_reg("BR", self.get_reg("IP"))
         self.__tick()
-        self.sig_latch_reg("IP", self.get_reg("BR")+1)
+        self.sig_latch_reg("IP", self.get_reg("BR") + 1)
         self.sig_read()
         self.__tick()
         self.sig_latch_reg("CR", self.get_reg("DR"))
@@ -198,20 +196,33 @@ class ControlUnit:
             self.sig_write()
             self.__tick()
 
-        elif opcode in [Opcode.ADD.value, Opcode.SUB.value, Opcode.MUL.value, Opcode.DIV.value, Opcode.MOD.value, Opcode.CMP.value]:
+        elif opcode in [
+            Opcode.ADD.value,
+            Opcode.SUB.value,
+            Opcode.MUL.value,
+            Opcode.DIV.value,
+            Opcode.MOD.value,
+            Opcode.CMP.value,
+        ]:
             self.operand_fetch(arg_mode)
-            res = self.data_path.alu.alu_calculate(self.get_reg("AC"), self.get_reg("DR"), opcode_to_alu_operation[Opcode(opcode)])
+            res = self.data_path.alu.alu_calculate(
+                self.get_reg("AC"), self.get_reg("DR"), opcode_to_alu_operation[Opcode(opcode)]
+            )
             if opcode not in Opcode.CMP:
                 self.sig_latch_reg("AC", bin(res)[2:])
             self.__tick()
 
         elif opcode == Opcode.INC.value:
-            res = self.data_path.alu.alu_calculate(self.get_reg("AC"), self.get_reg("DR"), AluOperation.INC, True, False)
+            res = self.data_path.alu.alu_calculate(
+                self.get_reg("AC"), self.get_reg("DR"), AluOperation.INC, True, False
+            )
             self.sig_latch_reg("AC", bin(res)[2:])
             self.__tick()
 
         elif opcode == Opcode.DEC.value:
-            res = self.data_path.alu.alu_calculate(self.get_reg("AC"), self.get_reg("DR"), AluOperation.DEC, True, False)
+            res = self.data_path.alu.alu_calculate(
+                self.get_reg("AC"), self.get_reg("DR"), AluOperation.DEC, True, False
+            )
             self.sig_latch_reg("AC", bin(res)[2:])
             self.__tick()
 
@@ -234,15 +245,14 @@ class ControlUnit:
             self.__tick()
 
         elif opcode == Opcode.OUTC.value:
-
-            val = chr(int(self.get_reg("AC"),2))
+            val = chr(int(self.get_reg("AC"), 2))
             self.device.io = val
             self.device.write()
             logging.info(f"{{output_buffer: {self.device.output} << {val}}}")
             self.__tick()
 
         elif opcode == Opcode.OUT.value:
-            val = str(int(self.get_reg("AC"),2))
+            val = str(int(self.get_reg("AC"), 2))
             self.device.io = val
             self.device.write()
             logging.info(f"{{output_buffer: {self.device.output} << {val}}}")
@@ -260,7 +270,7 @@ class ControlUnit:
             self.sig_write()
             self.__tick()
             if self.data_path.alu.N or self.data_path.alu.Z:
-                self.sig_latch_reg("IP", self.get_reg("IP")+1)
+                self.sig_latch_reg("IP", self.get_reg("IP") + 1)
                 self.__tick()
 
         elif opcode == Opcode.BEQ.value:
@@ -282,7 +292,7 @@ class ControlUnit:
         elif opcode == Opcode.BLE.value:
             # z | (n ^ v)
             if self.data_path.alu.Z | self.data_path.alu.N:
-                self.sig_latch_reg("IP",int(self.get_reg("DR")[8:],2))
+                self.sig_latch_reg("IP", int(self.get_reg("DR")[8:], 2))
                 self.__tick()
 
         elif opcode == Opcode.BL.value:
@@ -300,26 +310,21 @@ class ControlUnit:
 
     def __print__(self):
         self.instr += 1
-        state_repr = (
-            "INSTR: {:4} | AC {:4} | BR {:4} | IP: {:4} | AR: {:4} | DR: {:12} |  CR: {:18} |"
-        ).format(
+        state_repr = ("INSTR: {:4} | AC {:4} | BR {:4} | IP: {:4} | AR: {:4} | DR: {:12} |  CR: {:18} |").format(
             self.instr,
             int(str(self.get_reg("AC")), 2),
             int(self.get_reg("BR")),
             self.get_reg("IP"),
             self.get_reg("AR"),
             int(self.get_reg("DR"), 2),
-            parser_to_name_instr(self.get_reg("CR"))
-
+            parser_to_name_instr(self.get_reg("CR")),
         )
         logging.info(state_repr)
 
 
-
-
 def simulation(input_buffer: list, instructions: list, limit: int):
     if len(instructions) > MEMORY_SIZE:
-        raise Exceptions('Program is too large')
+        raise Exceptions("Program is too large")
 
     device = Device()
     dataPath = DataPath(instructions)
@@ -330,7 +335,7 @@ def simulation(input_buffer: list, instructions: list, limit: int):
     try:
         while True:
             if instr_counter > limit:
-                raise Exceptions('Too long execution! Increase limit')
+                raise Exceptions("Too long execution! Increase limit")
             control_unit.decode_and_execute_instruction()
             instr_counter += 1
     except StopIteration:
@@ -353,16 +358,18 @@ def main(args):
 
     try:
         output, ticks, instructions = simulation(input_buffer, code, 100000)
-        print("Output:", ''.join(output))
+        print("Output:", "".join(output))
         print("Instructions:", instructions)
         print("Ticks:", ticks)
     except Exceptions as exception:
         logging.error(exception.get_msg())
 
 
-if __name__ == '__main__':
-    logging.basicConfig(filename='logfile.log', level=logging.INFO, format='%(levelname)-7s %(module)s:%(funcName)-13s %(message)s')
-    FORMAT = '%(levelname)-7s %(module)s:%(funcName)-13s %(message)s'
+if __name__ == "__main__":
+    logging.basicConfig(
+        filename="logfile.log", level=logging.INFO, format="%(levelname)-7s %(module)s:%(funcName)-13s %(message)s"
+    )
+    FORMAT = "%(levelname)-7s %(module)s:%(funcName)-13s %(message)s"
     logging.basicConfig(format=FORMAT)
     logging.getLogger().setLevel(logging.INFO)
     main(sys.argv[1:])

@@ -41,72 +41,69 @@ class Parser:
         while not self.__check_token(TokenType.EOF):
             self.statement()
 
-        self.instructions.append({'opcode': Opcode.HLT})
+        self.instructions.append({"opcode": Opcode.HLT})
         return self.__generate_machine_code_arr()
 
     @staticmethod
     def loop_begin(number: int):
-        return 'loop' + str(number)
+        return "loop" + str(number)
 
     @staticmethod
     def loop_end(number: int):
-        return 'end_loop' + str(number)
+        return "end_loop" + str(number)
 
     @staticmethod
     def index(label: str):
-        return label + 'index'
+        return label + "index"
 
     @staticmethod
     def loop_arg_count(count: str):
-        return count + 'count'
+        return count + "count"
 
     @staticmethod
     def loop_cointer(counter: str):
-        return counter + 'counter'
+        return counter + "counter"
 
     def __add_variables(self):
         for var, value in self.integers.items():
             self.var_indx[var] = len(self.variables)
-            self.variables.append(
-                {'opcode': Opcode.DATA, 'arg': value, 'arg_mode': AddressingMode.DIRECT})
+            self.variables.append({"opcode": Opcode.DATA, "arg": value, "arg_mode": AddressingMode.DIRECT})
 
         for var, value in self.strings.items():
             self.var_indx[self.index(var)] = len(self.variables)
 
             self.variables.append(
-                {'opcode': Opcode.DATA, 'arg': len(self.variables) + 2, 'arg_mode': AddressingMode.ABSOLUTE})
+                {"opcode": Opcode.DATA, "arg": len(self.variables) + 2, "arg_mode": AddressingMode.ABSOLUTE}
+            )
             self.var_indx[self.loop_arg_count(var)] = len(self.variables)
 
             self.var_indx[var] = len(self.variables)
-            self.variables.append(
-                {'opcode': Opcode.DATA, 'arg': len(value), 'arg_mode': AddressingMode.DIRECT})
+            self.variables.append({"opcode": Opcode.DATA, "arg": len(value), "arg_mode": AddressingMode.DIRECT})
             for i in range(0, len(value)):
                 letter = value[i]
-                self.variables.append(
-                    {'opcode': Opcode.DATA, 'arg': ord(letter), 'arg_mode': AddressingMode.DIRECT})
+                self.variables.append({"opcode": Opcode.DATA, "arg": ord(letter), "arg_mode": AddressingMode.DIRECT})
             self.var_indx[self.loop_cointer(var)] = len(self.variables)
-            self.variables.append(
-                {'opcode': Opcode.DATA, 'arg': 0, 'arg_mode': AddressingMode.DIRECT})
+            self.variables.append({"opcode": Opcode.DATA, "arg": 0, "arg_mode": AddressingMode.DIRECT})
 
     # Create extra variable for data store for the calculation process; put it in Term format to the 'variables' array
     def __create_exp_op(self):
         self.exp_ind += 1
-        exp = 'exp_op' + str(self.exp_ind)
+        exp = "exp_op" + str(self.exp_ind)
         self.var_indx[exp] = len(self.variables)
-        self.variables.append({'opcode': Opcode.DATA, 'arg': 0, 'arg_mode': AddressingMode.DIRECT})
+        self.variables.append({"opcode": Opcode.DATA, "arg": 0, "arg_mode": AddressingMode.DIRECT})
         return exp
 
     def __create_and_save_to_exp_op(self):
         exp = self.__create_exp_op()
-        self.instructions.append({'opcode': Opcode.ST, 'arg': exp, 'arg_mode': AddressingMode.ABSOLUTE})
+        self.instructions.append({"opcode": Opcode.ST, "arg": exp, "arg_mode": AddressingMode.ABSOLUTE})
         return exp
 
     # Add calculation instruction to the program for the calculation process
     def __create_exp_evaluation(self, opcode, exp1, exp2, exp_res):
-        self.instructions.append({'opcode': Opcode.LD, 'arg': exp1, 'arg_mode': AddressingMode.ABSOLUTE})
-        self.instructions.append({'opcode': opcode, 'arg': exp2, 'arg_mode': AddressingMode.ABSOLUTE})
+        self.instructions.append({"opcode": Opcode.LD, "arg": exp1, "arg_mode": AddressingMode.ABSOLUTE})
+        self.instructions.append({"opcode": opcode, "arg": exp2, "arg_mode": AddressingMode.ABSOLUTE})
         if exp_res is not None:
-            self.instructions.append({'opcode': Opcode.ST, 'arg': exp_res, 'arg_mode': AddressingMode.ABSOLUTE})
+            self.instructions.append({"opcode": Opcode.ST, "arg": exp_res, "arg_mode": AddressingMode.ABSOLUTE})
 
     # Generate final code in Term format - add variables to the head, change variables and labels to their addresses
     def __generate_machine_code_arr(self):
@@ -115,20 +112,19 @@ class Parser:
         code += self.variables
 
         for instr in self.instructions:
-            if instr['opcode'] in addressed_commands:
-                arg = instr['arg']
-                if re.search('[a-zA-Z]', str(arg)):
+            if instr["opcode"] in addressed_commands:
+                arg = instr["arg"]
+                if re.search("[a-zA-Z]", str(arg)):
                     if arg in self.labels_indx:
                         arg = self.labels_indx[arg] + len(self.variables)
                     elif arg in self.var_indx:
                         arg = self.var_indx[arg]
 
-                instr['arg'] = int(arg)
+                instr["arg"] = int(arg)
             code.append(instr)
         return code
 
     def statement(self):
-
         if self.__check_token(TokenType.PRINT):
             self.__next_token()
             self.__match(TokenType.OPEN_PAREN_ROUND)
@@ -141,11 +137,11 @@ class Parser:
             self.__match(TokenType.CLOSE_PAREN_ROUND)
 
             if ident in self.integers:
-                self.instructions.append({'opcode': Opcode.LD, 'arg': ident, 'arg_mode': AddressingMode.ABSOLUTE})
+                self.instructions.append({"opcode": Opcode.LD, "arg": ident, "arg_mode": AddressingMode.ABSOLUTE})
                 if print_type == TokenType.STRING:
-                    self.instructions.append({'opcode': Opcode.OUTC})
+                    self.instructions.append({"opcode": Opcode.OUTC})
                 elif print_type == TokenType.INT:
-                    self.instructions.append({'opcode': Opcode.OUT})
+                    self.instructions.append({"opcode": Opcode.OUT})
                 else:
                     raise Exceptions("Incorrect type in print")
 
@@ -157,27 +153,26 @@ class Parser:
                 l_count_symbol = self.loop_arg_count(ident)
                 l_counter = self.loop_cointer(ident)
                 self.instructions.append(
-                    {'opcode': Opcode.LD, 'arg': l_count_symbol, 'arg_mode': AddressingMode.ABSOLUTE})
-                self.instructions.append(
-                    {'opcode': Opcode.ST, 'arg': l_counter, 'arg_mode': AddressingMode.ABSOLUTE})
+                    {"opcode": Opcode.LD, "arg": l_count_symbol, "arg_mode": AddressingMode.ABSOLUTE}
+                )
+                self.instructions.append({"opcode": Opcode.ST, "arg": l_counter, "arg_mode": AddressingMode.ABSOLUTE})
                 self.labels_indx[l_begin] = len(self.instructions)
 
-
-                self.instructions.append({'opcode': Opcode.LD, 'arg': l_counter, 'arg_mode': AddressingMode.ABSOLUTE})
-                self.instructions.append({'opcode': Opcode.BEQ, 'arg': l_end, 'arg_mode': AddressingMode.DIRECT})
-                self.instructions.append({'opcode': Opcode.DEC})
-                self.instructions.append({'opcode': Opcode.ST, 'arg': l_counter, 'arg_mode': AddressingMode.ABSOLUTE})
-                self.instructions.append({'opcode': Opcode.LD, 'arg': ptr, 'arg_mode': AddressingMode.RELATIVE})
+                self.instructions.append({"opcode": Opcode.LD, "arg": l_counter, "arg_mode": AddressingMode.ABSOLUTE})
+                self.instructions.append({"opcode": Opcode.BEQ, "arg": l_end, "arg_mode": AddressingMode.DIRECT})
+                self.instructions.append({"opcode": Opcode.DEC})
+                self.instructions.append({"opcode": Opcode.ST, "arg": l_counter, "arg_mode": AddressingMode.ABSOLUTE})
+                self.instructions.append({"opcode": Opcode.LD, "arg": ptr, "arg_mode": AddressingMode.RELATIVE})
                 if print_type == TokenType.STRING:
-                    self.instructions.append({'opcode': Opcode.OUTC})
+                    self.instructions.append({"opcode": Opcode.OUTC})
                 elif print_type == TokenType.INT:
-                    self.instructions.append({'opcode': Opcode.OUT})
+                    self.instructions.append({"opcode": Opcode.OUT})
                 else:
                     raise Exceptions("Incorrect type in print()")
-                self.instructions.append({'opcode': Opcode.LD, 'arg': ptr, 'arg_mode': AddressingMode.ABSOLUTE})
-                self.instructions.append({'opcode': Opcode.INC})
-                self.instructions.append({'opcode': Opcode.ST, 'arg': ptr, 'arg_mode': AddressingMode.ABSOLUTE})
-                self.instructions.append({'opcode': Opcode.JUMP, 'arg': l_begin, 'arg_mode': AddressingMode.DIRECT})
+                self.instructions.append({"opcode": Opcode.LD, "arg": ptr, "arg_mode": AddressingMode.ABSOLUTE})
+                self.instructions.append({"opcode": Opcode.INC})
+                self.instructions.append({"opcode": Opcode.ST, "arg": ptr, "arg_mode": AddressingMode.ABSOLUTE})
+                self.instructions.append({"opcode": Opcode.JUMP, "arg": l_begin, "arg_mode": AddressingMode.DIRECT})
                 self.labels_indx[l_end] = len(self.instructions)
             else:
                 raise Exceptions("Invalid operation - try to print not defined variable - " + ident)
@@ -188,13 +183,13 @@ class Parser:
             self.__match(TokenType.OPEN_PAREN_ROUND)
             self.if_ind += 1
 
-            if_end = 'if_done' + str(self.if_ind)
+            if_end = "if_done" + str(self.if_ind)
             self.comparison()
             self.__match(TokenType.CLOSE_PAREN_ROUND)
 
             self.new_line()
             opcode = self.last_comparison_instr
-            self.instructions.append({'opcode': opcode, 'arg': if_end, 'arg_mode': AddressingMode.DIRECT})
+            self.instructions.append({"opcode": opcode, "arg": if_end, "arg_mode": AddressingMode.DIRECT})
 
             while not self.__check_token(TokenType.ENDIF):
                 self.statement()
@@ -215,13 +210,13 @@ class Parser:
             self.__match(TokenType.CLOSE_PAREN_ROUND)
             self.new_line()
             opcode = self.last_comparison_instr
-            self.instructions.append({'opcode': opcode, 'arg': l_end, 'arg_mode': AddressingMode.DIRECT})
+            self.instructions.append({"opcode": opcode, "arg": l_end, "arg_mode": AddressingMode.DIRECT})
 
             while not self.__check_token(TokenType.ENDWHILE):
                 self.statement()
 
             self.__match(TokenType.ENDWHILE)
-            self.instructions.append({'opcode': Opcode.JUMP, 'arg': l_begin, 'arg_mode': AddressingMode.DIRECT})
+            self.instructions.append({"opcode": Opcode.JUMP, "arg": l_begin, "arg_mode": AddressingMode.DIRECT})
             self.labels_indx[l_end] = len(self.instructions)
 
         elif self.__check_token(TokenType.INT):
@@ -245,13 +240,18 @@ class Parser:
             ident = self.cur_token.text
             self.__next_token()
             operator = self.cur_token.kind
-            if self.__check_token(TokenType.EQ) or self.__check_token(TokenType.ASTERISKEQ) or \
-                    self.__check_token(TokenType.MODEQ) or self.__check_token(TokenType.SLASHEQ) or \
-                    self.__check_token(TokenType.MINUSEQ) or self.__check_token(TokenType.PLUSEQ):
+            if (
+                self.__check_token(TokenType.EQ)
+                or self.__check_token(TokenType.ASTERISKEQ)
+                or self.__check_token(TokenType.MODEQ)
+                or self.__check_token(TokenType.SLASHEQ)
+                or self.__check_token(TokenType.MINUSEQ)
+                or self.__check_token(TokenType.PLUSEQ)
+            ):
                 self.__next_token()
                 self.expression()
                 if operator == TokenType.EQ:
-                    self.instructions.append({'opcode': Opcode.ST, 'arg': ident, 'arg_mode': AddressingMode.ABSOLUTE})
+                    self.instructions.append({"opcode": Opcode.ST, "arg": ident, "arg_mode": AddressingMode.ABSOLUTE})
                 else:
                     exp = self.__create_and_save_to_exp_op()
                     if operator == TokenType.PLUSEQ:
@@ -279,13 +279,12 @@ class Parser:
                 raise Exceptions("Invalid operation - try to read in not defined variable - " + ident)
 
             self.__match(TokenType.IDENT)
-            self.instructions.append({'opcode': Opcode.IN})
-            self.instructions.append({'opcode': Opcode.ST, 'arg': ident, 'arg_mode': AddressingMode.ABSOLUTE})
+            self.instructions.append({"opcode": Opcode.IN})
+            self.instructions.append({"opcode": Opcode.ST, "arg": ident, "arg_mode": AddressingMode.ABSOLUTE})
             self.__match(TokenType.CLOSE_PAREN_ROUND)
 
         else:
-            raise Exceptions("Invalid statement at " + self.cur_token.text + " ("
-                                       + self.cur_token.kind.name + ")")
+            raise Exceptions("Invalid statement at " + self.cur_token.text + " (" + self.cur_token.kind.name + ")")
 
         self.new_line()
 
@@ -296,9 +295,14 @@ class Parser:
 
     def comparison(self):
         self.expression()
-        if self.__check_token(TokenType.GT) or self.__check_token(TokenType.GTEQ) or self.__check_token(TokenType.LT)\
-                or self.__check_token(TokenType.LTEQ) or self.__check_token(TokenType.EQEQ)\
-                or self.__check_token(TokenType.NOTEQ):
+        if (
+            self.__check_token(TokenType.GT)
+            or self.__check_token(TokenType.GTEQ)
+            or self.__check_token(TokenType.LT)
+            or self.__check_token(TokenType.LTEQ)
+            or self.__check_token(TokenType.EQEQ)
+            or self.__check_token(TokenType.NOTEQ)
+        ):
             exp_id1 = self.__create_and_save_to_exp_op()
             operator = self.cur_token.text
             self.__next_token()
@@ -325,24 +329,30 @@ class Parser:
         if self.__check_token(TokenType.PLUS) or self.__check_token(TokenType.MINUS):
             exp1 = self.__create_exp_op()
             while self.__check_token(TokenType.PLUS) or self.__check_token(TokenType.MINUS):
-                self.instructions.append({'opcode': Opcode.ST, 'arg': exp1, 'arg_mode': AddressingMode.ABSOLUTE})
+                self.instructions.append({"opcode": Opcode.ST, "arg": exp1, "arg_mode": AddressingMode.ABSOLUTE})
                 operator = self.cur_token.text
                 self.__next_token()
                 self.term()
                 exp2 = self.__create_and_save_to_exp_op()
-                if operator == '+':
+                if operator == "+":
                     self.__create_exp_evaluation(opcode=Opcode.ADD, exp1=exp1, exp2=exp2, exp_res=None)
-                elif operator == '-':
+                elif operator == "-":
                     self.__create_exp_evaluation(opcode=Opcode.SUB, exp1=exp1, exp2=exp2, exp_res=None)
 
     def term(self):
         self.unary()
-        if self.__check_token(TokenType.ASTERISK) or self.__check_token(TokenType.SLASH) \
-                or self.__check_token(TokenType.MOD):
+        if (
+            self.__check_token(TokenType.ASTERISK)
+            or self.__check_token(TokenType.SLASH)
+            or self.__check_token(TokenType.MOD)
+        ):
             exp1 = self.__create_exp_op()
-            while self.__check_token(TokenType.ASTERISK) or self.__check_token(TokenType.SLASH) or self.__check_token(
-                    TokenType.MOD):
-                self.instructions.append({'opcode': Opcode.ST, 'arg': exp1, 'arg_mode': AddressingMode.ABSOLUTE})
+            while (
+                self.__check_token(TokenType.ASTERISK)
+                or self.__check_token(TokenType.SLASH)
+                or self.__check_token(TokenType.MOD)
+            ):
+                self.instructions.append({"opcode": Opcode.ST, "arg": exp1, "arg_mode": AddressingMode.ABSOLUTE})
                 operator = self.cur_token.text
                 self.__next_token()
                 self.unary()
@@ -351,30 +361,32 @@ class Parser:
                     self.__create_exp_evaluation(opcode=Opcode.DIV, exp1=exp1, exp2=exp2, exp_res=None)
                 elif operator == "*":
                     self.__create_exp_evaluation(opcode=Opcode.MUL, exp1=exp1, exp2=exp2, exp_res=None)
-                elif operator == '%':
+                elif operator == "%":
                     self.__create_exp_evaluation(opcode=Opcode.MOD, exp1=exp1, exp2=exp2, exp_res=None)
 
     def unary(self):
         token = None
         if self.__check_token(TokenType.PLUS) or self.__check_token(TokenType.MINUS):
             if self.__check_token(TokenType.MINUS):
-                token = '-'
+                token = "-"
             self.__next_token()
         self.primary()
-        if token == '-':
-            self.instructions.append({'opcode': Opcode.NEG})
+        if token == "-":
+            self.instructions.append({"opcode": Opcode.NEG})
 
     def primary(self):
         if self.__check_token(TokenType.NUMBER):
             self.instructions.append(
-                {'opcode': Opcode.LD, 'arg': self.cur_token.text, 'arg_mode': AddressingMode.DIRECT})
+                {"opcode": Opcode.LD, "arg": self.cur_token.text, "arg_mode": AddressingMode.DIRECT}
+            )
             self.__next_token()
         elif self.__check_token(TokenType.IDENT):
             if self.cur_token.text not in self.integers:
                 raise Exceptions("Referencing variable before assignment: " + self.cur_token.text)
 
             self.instructions.append(
-                {'opcode': Opcode.LD, 'arg': self.cur_token.text, 'arg_mode': AddressingMode.ABSOLUTE})
+                {"opcode": Opcode.LD, "arg": self.cur_token.text, "arg_mode": AddressingMode.ABSOLUTE}
+            )
             self.__next_token()
         else:
             raise Exceptions("Unexpected token at " + self.cur_token.text)
@@ -386,17 +398,20 @@ class Parser:
             operator = self.cur_token.text
             self.__next_token()
             term = self.evaluate_term()
-            if operator == '+':
+            if operator == "+":
                 res = res + term
-            elif operator == '-':
+            elif operator == "-":
                 res = res - term
         return res
 
     def evaluate_term(self):
         res = self.evaluate_unary()
 
-        while self.__check_token(TokenType.ASTERISK) or self.__check_token(TokenType.SLASH) or self.__check_token(
-                TokenType.MOD):
+        while (
+            self.__check_token(TokenType.ASTERISK)
+            or self.__check_token(TokenType.SLASH)
+            or self.__check_token(TokenType.MOD)
+        ):
             operator = self.cur_token.text
             self.__next_token()
             unary = self.evaluate_unary()
@@ -404,7 +419,7 @@ class Parser:
                 res = res // unary
             elif operator == "*":
                 res = res * unary
-            elif operator == '%':
+            elif operator == "%":
                 res = res % unary
         return res
 

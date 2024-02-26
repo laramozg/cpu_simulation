@@ -34,11 +34,36 @@ class Opcode(str, enum.Enum):
     NEG = 0x22
 
 
-addressed_commands = [Opcode.ADD, Opcode.SUB, Opcode.DIV, Opcode.MUL, Opcode.MOD, Opcode.CMP, Opcode.LOOP, Opcode.LD,
-                      Opcode.ST, Opcode.JUMP, Opcode.BEQ, Opcode.BNE, Opcode.BGE, Opcode.BLE, Opcode.BL, Opcode.BG]
+addressed_commands = [
+    Opcode.ADD,
+    Opcode.SUB,
+    Opcode.DIV,
+    Opcode.MUL,
+    Opcode.MOD,
+    Opcode.CMP,
+    Opcode.LOOP,
+    Opcode.LD,
+    Opcode.ST,
+    Opcode.JUMP,
+    Opcode.BEQ,
+    Opcode.BNE,
+    Opcode.BGE,
+    Opcode.BLE,
+    Opcode.BL,
+    Opcode.BG,
+]
 
-unaddressed_commands = [Opcode.NOP, Opcode.HLT, Opcode.CLA, Opcode.IN, Opcode.OUTC, Opcode.OUT, Opcode.INC,
-                        Opcode.DEC, Opcode.NEG]
+unaddressed_commands = [
+    Opcode.NOP,
+    Opcode.HLT,
+    Opcode.CLA,
+    Opcode.IN,
+    Opcode.OUTC,
+    Opcode.OUT,
+    Opcode.INC,
+    Opcode.DEC,
+    Opcode.NEG,
+]
 
 
 class AddressingMode(str, enum.Enum):
@@ -53,40 +78,44 @@ class Term(namedtuple("Term", "opcode arg arg_mode")):
 
 
 def write_code(filename, code):
-    with open(f'{filename}.bin', 'wb') as f:
+    with open(f"{filename}.bin", "wb") as f:
         for item in code:
-            opcode_bytes = struct.pack('B', int(item['opcode']))
-            arg = item.get('arg')
+            opcode_bytes = struct.pack("B", int(item["opcode"]))
+            arg = item.get("arg")
             if arg is None:
-                arg_bytes = struct.pack('H', 0000000000000000)
-                arg_mode_bytes = struct.pack('B', 00000000)
+                arg_bytes = struct.pack("H", 0000000000000000)
+                arg_mode_bytes = struct.pack("B", 00000000)
             else:
-                if item['opcode'] == Opcode.DATA:
-                    arg_mode_bytes = struct.pack('B', 00000000)
+                if item["opcode"] == Opcode.DATA:
+                    arg_mode_bytes = struct.pack("B", 00000000)
                 else:
-                    arg_mode = item.get('arg_mode')
-                    arg_mode_bytes = struct.pack('B', int(arg_mode, 16))
-                arg_bytes = struct.pack('>h', arg)
+                    arg_mode = item.get("arg_mode")
+                    arg_mode_bytes = struct.pack("B", int(arg_mode, 16))
+                arg_bytes = struct.pack(">h", arg)
 
             f.write(opcode_bytes + arg_mode_bytes + arg_bytes)
 
-    with open(f'{filename}.txt', 'w', encoding="utf-8") as ft:
+    with open(f"{filename}.txt", "w", encoding="utf-8") as ft:
         ft.write(f"{'< address >'.ljust(18)}     {'hexcode'.ljust(30)}    {'< mnemonica >'.ljust(30)}\n")
         intstr = read_code(filename)
         i = 0
         for item in code:
-            arg = item.get('arg')
+            arg = item.get("arg")
             if arg is None:
-                ft.write(f"{'0x'}{'{:0>8}'.format(hex(i)[2:].upper()).ljust(16)}   {'0x'}{'{:0>8}'.format(hex(int(intstr[i], 2))[2:].upper()).ljust(30)}   {Opcode(item['opcode']).name}\n")
+                ft.write(
+                    f"{'0x'}{'{:0>8}'.format(hex(i)[2:].upper()).ljust(16)}   {'0x'}{'{:0>8}'.format(hex(int(intstr[i], 2))[2:].upper()).ljust(30)}   {Opcode(item['opcode']).name}\n"
+                )
             else:
-                ft.write(f"{'0x'}{'{:0>8}'.format(hex(i)[2:].upper()).ljust(16)}   {'0x'}{'{:0>8}'.format(hex(int(intstr[i], 2))[2:].upper()).ljust(30)}   {Opcode(item['opcode']).name} {item.get('arg')} {AddressingMode(item['arg_mode']).name}\n")
+                ft.write(
+                    f"{'0x'}{'{:0>8}'.format(hex(i)[2:].upper()).ljust(16)}   {'0x'}{'{:0>8}'.format(hex(int(intstr[i], 2))[2:].upper()).ljust(30)}   {Opcode(item['opcode']).name} {item.get('arg')} {AddressingMode(item['arg_mode']).name}\n"
+                )
             i += 1
 
 
 def read_code(filename):
     code = []
     index = 0
-    with open(f'{filename}.bin', 'rb') as f:
+    with open(f"{filename}.bin", "rb") as f:
         byte_code = f.read()
 
     while index < len(byte_code):
@@ -96,7 +125,7 @@ def read_code(filename):
         arg_mode = bin(byte_code[index])[2:].zfill(2)
         index += 1
 
-        arg = bin(int.from_bytes(byte_code[index:index+2], byteorder='big'))[2:].zfill(24)
+        arg = bin(int.from_bytes(byte_code[index : index + 2], byteorder="big"))[2:].zfill(24)
         index += 2
 
         instruction_binary = "{}{}{}".format(opcode, arg_mode, arg)
