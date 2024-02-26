@@ -71,14 +71,15 @@ def write_code(filename, code):
             f.write(opcode_bytes + arg_mode_bytes + arg_bytes)
 
     with open(f'{filename}.txt', 'w', encoding="utf-8") as ft:
+        ft.write(f"{'< address >'.ljust(18)}     {'hexcode'.ljust(30)}    {'< mnemonica >'.ljust(30)}\n")
         intstr = read_code(filename)
         i = 0
         for item in code:
             arg = item.get('arg')
             if arg is None:
-                ft.write(f"{repr(i).ljust(3)} | {repr(intstr[i]).ljust(6 * 8)} | {item['opcode']}\n")
+                ft.write(f"{'0x'}{'{:0>8}'.format(hex(i)[2:].upper()).ljust(16)}   {'0x'}{'{:0>8}'.format(hex(int(intstr[i], 2))[2:].upper()).ljust(30)}   {Opcode(item['opcode']).name}\n")
             else:
-                ft.write(f"{repr(i).ljust(3)} | {repr(intstr[i]).ljust(6 * 8)} | {item['opcode']} {item.get('arg')} {item['arg_mode']}\n")
+                ft.write(f"{'0x'}{'{:0>8}'.format(hex(i)[2:].upper()).ljust(16)}   {'0x'}{'{:0>8}'.format(hex(int(intstr[i], 2))[2:].upper()).ljust(30)}   {Opcode(item['opcode']).name} {item.get('arg')} {AddressingMode(item['arg_mode']).name}\n")
             i += 1
 
 

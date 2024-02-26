@@ -1,73 +1,74 @@
-0   | '00000000000000000000000000000000'               | Opcode.DATA 0 AddressingMode.DIRECT
-1   | '00000000000000000000000000000000'               | Opcode.DATA 0 AddressingMode.DIRECT
-2   | '00000000000000000000000000000000'               | Opcode.DATA 0 AddressingMode.DIRECT
-3   | '00000000000000000000000000000101'               | Opcode.DATA 5 AddressingMode.ABSOLUTE
-4   | '00000000000000000000000000010010'               | Opcode.DATA 18 AddressingMode.DIRECT
-5   | '00000000000000000000000001010111'               | Opcode.DATA 87 AddressingMode.DIRECT
-6   | '00000000000000000000000001101000'               | Opcode.DATA 104 AddressingMode.DIRECT
-7   | '00000000000000000000000001100001'               | Opcode.DATA 97 AddressingMode.DIRECT
-8   | '00000000000000000000000001110100'               | Opcode.DATA 116 AddressingMode.DIRECT
-9   | '00000000000000000000000000100000'               | Opcode.DATA 32 AddressingMode.DIRECT
-10  | '00000000000000000000000001101001'               | Opcode.DATA 105 AddressingMode.DIRECT
-11  | '00000000000000000000000001110011'               | Opcode.DATA 115 AddressingMode.DIRECT
-12  | '00000000000000000000000000100000'               | Opcode.DATA 32 AddressingMode.DIRECT
-13  | '00000000000000000000000001111001'               | Opcode.DATA 121 AddressingMode.DIRECT
-14  | '00000000000000000000000001101111'               | Opcode.DATA 111 AddressingMode.DIRECT
-15  | '00000000000000000000000001110101'               | Opcode.DATA 117 AddressingMode.DIRECT
-16  | '00000000000000000000000001110010'               | Opcode.DATA 114 AddressingMode.DIRECT
-17  | '00000000000000000000000000100000'               | Opcode.DATA 32 AddressingMode.DIRECT
-18  | '00000000000000000000000001101110'               | Opcode.DATA 110 AddressingMode.DIRECT
-19  | '00000000000000000000000001100001'               | Opcode.DATA 97 AddressingMode.DIRECT
-20  | '00000000000000000000000001101101'               | Opcode.DATA 109 AddressingMode.DIRECT
-21  | '00000000000000000000000001100101'               | Opcode.DATA 101 AddressingMode.DIRECT
-22  | '00000000000000000000000000111111'               | Opcode.DATA 63 AddressingMode.DIRECT
-23  | '00000000000000000000000000000000'               | Opcode.DATA 0 AddressingMode.DIRECT
-24  | '00000000000000000000000000011010'               | Opcode.DATA 26 AddressingMode.ABSOLUTE
-25  | '00000000000000000000000000000111'               | Opcode.DATA 7 AddressingMode.DIRECT
-26  | '00000000000000000000000001001000'               | Opcode.DATA 72 AddressingMode.DIRECT
-27  | '00000000000000000000000001100101'               | Opcode.DATA 101 AddressingMode.DIRECT
-28  | '00000000000000000000000001101100'               | Opcode.DATA 108 AddressingMode.DIRECT
-29  | '00000000000000000000000001101100'               | Opcode.DATA 108 AddressingMode.DIRECT
-30  | '00000000000000000000000001101111'               | Opcode.DATA 111 AddressingMode.DIRECT
-31  | '00000000000000000000000000101100'               | Opcode.DATA 44 AddressingMode.DIRECT
-32  | '00000000000000000000000000100000'               | Opcode.DATA 32 AddressingMode.DIRECT
-33  | '00000000000000000000000000000000'               | Opcode.DATA 0 AddressingMode.DIRECT
-34  | '00100010000000000000000000000100'               | Opcode.LD 4 AddressingMode.ABSOLUTE
-35  | '00100110000000000000000000010111'               | Opcode.ST 23 AddressingMode.ABSOLUTE
-36  | '00100010000000000000000000010111'               | Opcode.LD 23 AddressingMode.ABSOLUTE
-37  | '00101101000000000000000000101110'               | Opcode.BEQ 46 AddressingMode.DIRECT
-38  | '10000100000000000000000000000000'               | Opcode.DEC
-39  | '00100110000000000000000000010111'               | Opcode.ST 23 AddressingMode.ABSOLUTE
-40  | '00100011000000000000000000000011'               | Opcode.LD 3 AddressingMode.RELATIVE
-41  | '01011000000000000000000000000000'               | Opcode.OUTC
-42  | '00100010000000000000000000000011'               | Opcode.LD 3 AddressingMode.ABSOLUTE
-43  | '01000000000000000000000000000000'               | Opcode.INC
-44  | '00100110000000000000000000000011'               | Opcode.ST 3 AddressingMode.ABSOLUTE
-45  | '00101001000000000000000000100100'               | Opcode.JUMP 36 AddressingMode.DIRECT
-46  | '00100010000000000000000000011001'               | Opcode.LD 25 AddressingMode.ABSOLUTE
-47  | '00100110000000000000000000100001'               | Opcode.ST 33 AddressingMode.ABSOLUTE
-48  | '00100010000000000000000000100001'               | Opcode.LD 33 AddressingMode.ABSOLUTE
-49  | '00101101000000000000000000111010'               | Opcode.BEQ 58 AddressingMode.DIRECT
-50  | '10000100000000000000000000000000'               | Opcode.DEC
-51  | '00100110000000000000000000100001'               | Opcode.ST 33 AddressingMode.ABSOLUTE
-52  | '00100011000000000000000000011000'               | Opcode.LD 24 AddressingMode.RELATIVE
-53  | '01011000000000000000000000000000'               | Opcode.OUTC
-54  | '00100010000000000000000000011000'               | Opcode.LD 24 AddressingMode.ABSOLUTE
-55  | '01000000000000000000000000000000'               | Opcode.INC
-56  | '00100110000000000000000000011000'               | Opcode.ST 24 AddressingMode.ABSOLUTE
-57  | '00101001000000000000000000110000'               | Opcode.JUMP 48 AddressingMode.DIRECT
-58  | '01010100000000000000000000000000'               | Opcode.IN
-59  | '00100110000000000000000000000010'               | Opcode.ST 2 AddressingMode.ABSOLUTE
-60  | '00100010000000000000000000000010'               | Opcode.LD 2 AddressingMode.ABSOLUTE
-61  | '00100110000000000000000000000000'               | Opcode.ST 0 AddressingMode.ABSOLUTE
-62  | '00100001000000000000000000000000'               | Opcode.LD 0 AddressingMode.DIRECT
-63  | '00100110000000000000000000000001'               | Opcode.ST 1 AddressingMode.ABSOLUTE
-64  | '00100010000000000000000000000000'               | Opcode.LD 0 AddressingMode.ABSOLUTE
-65  | '00011010000000000000000000000001'               | Opcode.CMP 1 AddressingMode.ABSOLUTE
-66  | '00111001000000000000000001001000'               | Opcode.BLE 72 AddressingMode.DIRECT
-67  | '00100010000000000000000000000010'               | Opcode.LD 2 AddressingMode.ABSOLUTE
-68  | '01011000000000000000000000000000'               | Opcode.OUTC
-69  | '01010100000000000000000000000000'               | Opcode.IN
-70  | '00100110000000000000000000000010'               | Opcode.ST 2 AddressingMode.ABSOLUTE
-71  | '00101001000000000000000000111100'               | Opcode.JUMP 60 AddressingMode.DIRECT
-72  | '01001100000000000000000000000000'               | Opcode.HLT
+< address >            hexcode                           < mnemonica >                 
+0x00000000           0x00000000                         DATA 0 DIRECT
+0x00000001           0x00000000                         DATA 0 DIRECT
+0x00000002           0x00000000                         DATA 0 DIRECT
+0x00000003           0x00000005                         DATA 5 ABSOLUTE
+0x00000004           0x00000012                         DATA 18 DIRECT
+0x00000005           0x00000057                         DATA 87 DIRECT
+0x00000006           0x00000068                         DATA 104 DIRECT
+0x00000007           0x00000061                         DATA 97 DIRECT
+0x00000008           0x00000074                         DATA 116 DIRECT
+0x00000009           0x00000020                         DATA 32 DIRECT
+0x0000000A           0x00000069                         DATA 105 DIRECT
+0x0000000B           0x00000073                         DATA 115 DIRECT
+0x0000000C           0x00000020                         DATA 32 DIRECT
+0x0000000D           0x00000079                         DATA 121 DIRECT
+0x0000000E           0x0000006F                         DATA 111 DIRECT
+0x0000000F           0x00000075                         DATA 117 DIRECT
+0x00000010           0x00000072                         DATA 114 DIRECT
+0x00000011           0x00000020                         DATA 32 DIRECT
+0x00000012           0x0000006E                         DATA 110 DIRECT
+0x00000013           0x00000061                         DATA 97 DIRECT
+0x00000014           0x0000006D                         DATA 109 DIRECT
+0x00000015           0x00000065                         DATA 101 DIRECT
+0x00000016           0x0000003F                         DATA 63 DIRECT
+0x00000017           0x00000000                         DATA 0 DIRECT
+0x00000018           0x0000001A                         DATA 26 ABSOLUTE
+0x00000019           0x00000007                         DATA 7 DIRECT
+0x0000001A           0x00000048                         DATA 72 DIRECT
+0x0000001B           0x00000065                         DATA 101 DIRECT
+0x0000001C           0x0000006C                         DATA 108 DIRECT
+0x0000001D           0x0000006C                         DATA 108 DIRECT
+0x0000001E           0x0000006F                         DATA 111 DIRECT
+0x0000001F           0x0000002C                         DATA 44 DIRECT
+0x00000020           0x00000020                         DATA 32 DIRECT
+0x00000021           0x00000000                         DATA 0 DIRECT
+0x00000022           0x22000004                         LD 4 ABSOLUTE
+0x00000023           0x26000017                         ST 23 ABSOLUTE
+0x00000024           0x22000017                         LD 23 ABSOLUTE
+0x00000025           0x2D00002E                         BEQ 46 DIRECT
+0x00000026           0x84000000                         DEC
+0x00000027           0x26000017                         ST 23 ABSOLUTE
+0x00000028           0x23000003                         LD 3 RELATIVE
+0x00000029           0x58000000                         OUTC
+0x0000002A           0x22000003                         LD 3 ABSOLUTE
+0x0000002B           0x40000000                         INC
+0x0000002C           0x26000003                         ST 3 ABSOLUTE
+0x0000002D           0x29000024                         JUMP 36 DIRECT
+0x0000002E           0x22000019                         LD 25 ABSOLUTE
+0x0000002F           0x26000021                         ST 33 ABSOLUTE
+0x00000030           0x22000021                         LD 33 ABSOLUTE
+0x00000031           0x2D00003A                         BEQ 58 DIRECT
+0x00000032           0x84000000                         DEC
+0x00000033           0x26000021                         ST 33 ABSOLUTE
+0x00000034           0x23000018                         LD 24 RELATIVE
+0x00000035           0x58000000                         OUTC
+0x00000036           0x22000018                         LD 24 ABSOLUTE
+0x00000037           0x40000000                         INC
+0x00000038           0x26000018                         ST 24 ABSOLUTE
+0x00000039           0x29000030                         JUMP 48 DIRECT
+0x0000003A           0x54000000                         IN
+0x0000003B           0x26000002                         ST 2 ABSOLUTE
+0x0000003C           0x22000002                         LD 2 ABSOLUTE
+0x0000003D           0x26000000                         ST 0 ABSOLUTE
+0x0000003E           0x21000000                         LD 0 DIRECT
+0x0000003F           0x26000001                         ST 1 ABSOLUTE
+0x00000040           0x22000000                         LD 0 ABSOLUTE
+0x00000041           0x1A000001                         CMP 1 ABSOLUTE
+0x00000042           0x39000048                         BLE 72 DIRECT
+0x00000043           0x22000002                         LD 2 ABSOLUTE
+0x00000044           0x58000000                         OUTC
+0x00000045           0x54000000                         IN
+0x00000046           0x26000002                         ST 2 ABSOLUTE
+0x00000047           0x2900003C                         JUMP 60 DIRECT
+0x00000048           0x4C000000                         HLT

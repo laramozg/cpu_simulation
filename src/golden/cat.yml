@@ -9,24 +9,25 @@ in_source: |-
 in_stdin: |-
   foo
 out_code: |-
-  0   | '00000000000000000000000000000000'               | Opcode.DATA 0 AddressingMode.DIRECT
-  1   | '00000000000000000000000000000000'               | Opcode.DATA 0 AddressingMode.DIRECT
-  2   | '00000000000000000000000000000000'               | Opcode.DATA 0 AddressingMode.DIRECT
-  3   | '01010100000000000000000000000000'               | Opcode.IN
-  4   | '00100110000000000000000000000010'               | Opcode.ST 2 AddressingMode.ABSOLUTE
-  5   | '00100010000000000000000000000010'               | Opcode.LD 2 AddressingMode.ABSOLUTE
-  6   | '00100110000000000000000000000000'               | Opcode.ST 0 AddressingMode.ABSOLUTE
-  7   | '00100001000000000000000000000000'               | Opcode.LD 0 AddressingMode.DIRECT
-  8   | '00100110000000000000000000000001'               | Opcode.ST 1 AddressingMode.ABSOLUTE
-  9   | '00100010000000000000000000000000'               | Opcode.LD 0 AddressingMode.ABSOLUTE
-  10  | '00011010000000000000000000000001'               | Opcode.CMP 1 AddressingMode.ABSOLUTE
-  11  | '00111001000000000000000000010001'               | Opcode.BLE 17 AddressingMode.DIRECT
-  12  | '00100010000000000000000000000010'               | Opcode.LD 2 AddressingMode.ABSOLUTE
-  13  | '01011000000000000000000000000000'               | Opcode.OUTC
-  14  | '01010100000000000000000000000000'               | Opcode.IN
-  15  | '00100110000000000000000000000010'               | Opcode.ST 2 AddressingMode.ABSOLUTE
-  16  | '00101001000000000000000000000101'               | Opcode.JUMP 5 AddressingMode.DIRECT
-  17  | '01001100000000000000000000000000'               | Opcode.HLT
+  < address >            hexcode                           < mnemonica >                 
+  0x00000000           0x00000000                         DATA 0 DIRECT
+  0x00000001           0x00000000                         DATA 0 DIRECT
+  0x00000002           0x00000000                         DATA 0 DIRECT
+  0x00000003           0x54000000                         IN
+  0x00000004           0x26000002                         ST 2 ABSOLUTE
+  0x00000005           0x22000002                         LD 2 ABSOLUTE
+  0x00000006           0x26000000                         ST 0 ABSOLUTE
+  0x00000007           0x21000000                         LD 0 DIRECT
+  0x00000008           0x26000001                         ST 1 ABSOLUTE
+  0x00000009           0x22000000                         LD 0 ABSOLUTE
+  0x0000000A           0x1A000001                         CMP 1 ABSOLUTE
+  0x0000000B           0x39000011                         BLE 17 DIRECT
+  0x0000000C           0x22000002                         LD 2 ABSOLUTE
+  0x0000000D           0x58000000                         OUTC
+  0x0000000E           0x54000000                         IN
+  0x0000000F           0x26000002                         ST 2 ABSOLUTE
+  0x00000010           0x29000005                         JUMP 5 DIRECT
+  0x00000011           0x4C000000                         HLT
 
 out_stdout: |-
   source LoC: 7  code instr: 18
