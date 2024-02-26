@@ -1,7 +1,7 @@
 import re
 from exceptions import Exceptions
-from lex import Lexer, TokenType
 from isa import Opcode, AddressingMode, addressed_commands
+from lex import Lexer, TokenType
 
 
 class Parser:
