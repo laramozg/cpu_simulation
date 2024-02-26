@@ -1,5 +1,5 @@
 import re
-from exceptions import Exceptions
+from codeerror import CodeError
 from isa import Opcode, AddressingMode, addressed_commands
 from lex import Lexer, TokenType
 
@@ -31,7 +31,7 @@ class Parser:
 
     def __match(self, kind: TokenType):
         if not self.__check_token(kind):
-            raise Exceptions("Need to use " + kind.name + ", instead of " + self.cur_token.kind.name)
+            raise CodeError("Need to use " + kind.name + ", instead of " + self.cur_token.kind.name)
         self.__next_token()
 
     def program(self):
@@ -143,7 +143,7 @@ class Parser:
                 elif print_type == TokenType.INT:
                     self.instructions.append({"opcode": Opcode.OUT})
                 else:
-                    raise Exceptions("Incorrect type in print")
+                    raise CodeError("Incorrect type in print")
 
             elif ident in self.strings:
                 self.loop_ind += 1
@@ -168,14 +168,14 @@ class Parser:
                 elif print_type == TokenType.INT:
                     self.instructions.append({"opcode": Opcode.OUT})
                 else:
-                    raise Exceptions("Incorrect type in print()")
+                    raise CodeError("Incorrect type in print()")
                 self.instructions.append({"opcode": Opcode.LD, "arg": ptr, "arg_mode": AddressingMode.ABSOLUTE})
                 self.instructions.append({"opcode": Opcode.INC})
                 self.instructions.append({"opcode": Opcode.ST, "arg": ptr, "arg_mode": AddressingMode.ABSOLUTE})
                 self.instructions.append({"opcode": Opcode.JUMP, "arg": l_begin, "arg_mode": AddressingMode.DIRECT})
                 self.labels_indx[l_end] = len(self.instructions)
             else:
-                raise Exceptions("Invalid operation - try to print not defined variable - " + ident)
+                raise CodeError("Invalid operation - try to print not defined variable - " + ident)
 
         elif self.__check_token(TokenType.IF):
             self.__next_token()
@@ -265,9 +265,9 @@ class Parser:
                     elif operator == TokenType.MODEQ:
                         self.__create_exp_evaluation(opcode=Opcode.MOD, exp1=ident, exp2=exp, exp_res=ident)
                     else:
-                        raise Exceptions("Invalid operator in assignment - " + ident)
+                        raise CodeError("Invalid operator in assignment - " + ident)
             else:
-                raise Exceptions("Invalid operation " + self.cur_token.text)
+                raise CodeError("Invalid operation " + self.cur_token.text)
 
         elif self.__check_token(TokenType.INPUT):
             self.__next_token()
@@ -276,7 +276,7 @@ class Parser:
             ident = self.cur_token.text
 
             if ident not in self.integers and ident not in self.strings:
-                raise Exceptions("Invalid operation - try to read in not defined variable - " + ident)
+                raise CodeError("Invalid operation - try to read in not defined variable - " + ident)
 
             self.__match(TokenType.IDENT)
             self.instructions.append({"opcode": Opcode.IN})
@@ -284,7 +284,7 @@ class Parser:
             self.__match(TokenType.CLOSE_PAREN_ROUND)
 
         else:
-            raise Exceptions("Invalid statement at " + self.cur_token.text + " (" + self.cur_token.kind.name + ")")
+            raise CodeError("Invalid statement at " + self.cur_token.text + " (" + self.cur_token.kind.name + ")")
 
         self.new_line()
 
@@ -322,7 +322,7 @@ class Parser:
             elif operator == ">":
                 self.last_comparison_instr = Opcode.BLE
         else:
-            raise Exceptions("Expected comparison operator at: " + self.cur_token.text)
+            raise CodeError("Expected comparison operator at: " + self.cur_token.text)
 
     def expression(self):
         self.term()
@@ -382,14 +382,14 @@ class Parser:
             self.__next_token()
         elif self.__check_token(TokenType.IDENT):
             if self.cur_token.text not in self.integers:
-                raise Exceptions("Referencing variable before assignment: " + self.cur_token.text)
+                raise CodeError("Referencing variable before assignment: " + self.cur_token.text)
 
             self.instructions.append(
                 {"opcode": Opcode.LD, "arg": self.cur_token.text, "arg_mode": AddressingMode.ABSOLUTE}
             )
             self.__next_token()
         else:
-            raise Exceptions("Unexpected token at " + self.cur_token.text)
+            raise CodeError("Unexpected token at " + self.cur_token.text)
 
     def evaluate_expression(self):
         res = self.evaluate_term()
@@ -438,10 +438,10 @@ class Parser:
             self.__next_token()
         elif self.__check_token(TokenType.IDENT):
             if self.cur_token.text not in self.integers:
-                raise Exceptions("Referencing variable before assignment: " + self.cur_token.text)
+                raise CodeError("Referencing variable before assignment: " + self.cur_token.text)
 
             res = int(self.integers[self.cur_token.text])
             self.__next_token()
         else:
-            raise Exceptions("Unexpected token at " + self.cur_token.text)
+            raise CodeError("Unexpected token at " + self.cur_token.text)
         return res

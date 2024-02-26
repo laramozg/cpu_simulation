@@ -2,7 +2,7 @@ import sys
 
 from isa import write_code
 from lex import Lexer
-from parse import Parser, Exceptions
+from parse import Parser, CodeError
 
 
 def main(args):
@@ -19,7 +19,7 @@ def main(args):
         code = parser.program()
         print("source LoC:", len(source.split("\n")), " code instr:", len(code))
         write_code(target, code)
-    except Exceptions as exception:
+    except CodeError as exception:
         print(exception.get_msg())
 
 

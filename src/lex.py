@@ -1,5 +1,5 @@
 import enum
-from exceptions import Exceptions
+from codeerror import CodeError
 
 
 class TokenType(enum.Enum):
@@ -148,7 +148,7 @@ class Lexer:
                 self.__next_char()
                 token = Token(last_char + self.cur_char, TokenType.NOTEQ)
             else:
-                raise Exceptions("Need to use !=" + self.__peek())
+                raise CodeError("Need to use !=" + self.__peek())
 
         elif self.cur_char == "(":
             token = Token(self.cur_char, TokenType.OPEN_PAREN_ROUND)
@@ -165,7 +165,7 @@ class Lexer:
 
             while self.cur_char != '"':
                 if self.cur_char in ("\r", "\n", "\t", "\\", "%"):
-                    raise Exceptions("Illegal character in string")
+                    raise CodeError("Illegal character in string")
                 self.__next_char()
 
             tok_text = self.source[start_pos : self.cur_pos]
@@ -176,7 +176,7 @@ class Lexer:
             while self.__peek().isdigit():
                 self.__next_char()
             if self.__peek() == ".":
-                raise Exceptions("Use only integers")
+                raise CodeError("Use only integers")
             tok_text = self.source[start_pos : self.cur_pos + 1]
             token = Token(tok_text, TokenType.NUMBER)
 
@@ -202,7 +202,7 @@ class Lexer:
         elif self.cur_char == "\0":
             token = Token("", TokenType.EOF)
         else:
-            raise Exceptions("Unknown token: " + self.cur_char)
+            raise CodeError("Unknown token: " + self.cur_char)
 
         self.__next_char()
         return token

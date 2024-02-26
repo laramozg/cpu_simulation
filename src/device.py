@@ -7,7 +7,7 @@ class Device:
 
     def read(self):
         if self.read_ind >= len(self.input):
-            raise EOFError("Buffer is empty")
+            raise EOFError()
         self.io = ord(self.input[self.read_ind])
         self.read_ind += 1
 

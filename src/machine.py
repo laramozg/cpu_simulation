@@ -1,7 +1,7 @@
 import sys
 import enum
 import logging
-from exceptions import Exceptions
+from codeerror import CodeError
 from isa import AddressingMode, Opcode, parser_to_name_instr
 from device import Device
 from isa import read_code
@@ -54,7 +54,7 @@ class ALU:
     @staticmethod
     def check_value(val: int):
         if val > MAX_WORD or val < MIN_WORD:
-            raise Exceptions("Overflow error!")
+            raise CodeError("Overflow error!")
         return val
 
     def alu_calculate(self, left, right, operation: AluOperation, sel_left: bool = True, sel_right: bool = True):
@@ -72,12 +72,12 @@ class ALU:
 
         elif operation == AluOperation.DIV:
             if not right_operand:
-                raise Exceptions("Error! Trying to get DIV operation from 0")
+                raise CodeError("Error! Trying to get DIV operation from 0")
             res = left_operand // right_operand
 
         elif operation == AluOperation.MOD:
             if not right_operand:
-                raise Exceptions("Error! Trying to get MOD operation from 0")
+                raise CodeError("Error! Trying to get MOD operation from 0")
             res = left_operand % right_operand
 
         elif operation == AluOperation.INC:
@@ -324,7 +324,7 @@ class ControlUnit:
 
 def simulation(input_buffer: list, instructions: list, limit: int):
     if len(instructions) > MEMORY_SIZE:
-        raise Exceptions("Program is too large")
+        raise CodeError("Program is too large")
 
     device = Device()
     dataPath = DataPath(instructions)
@@ -335,7 +335,7 @@ def simulation(input_buffer: list, instructions: list, limit: int):
     try:
         while True:
             if instr_counter > limit:
-                raise Exceptions("Too long execution! Increase limit")
+                raise CodeError("Too long execution! Increase limit")
             control_unit.decode_and_execute_instruction()
             instr_counter += 1
     except StopIteration:
@@ -361,7 +361,7 @@ def main(args):
         print("Output:", "".join(output))
         print("Instructions:", instructions)
         print("Ticks:", ticks)
-    except Exceptions as exception:
+    except CodeError as exception:
         logging.error(exception.get_msg())
 
 

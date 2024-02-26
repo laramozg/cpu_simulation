@@ -1,4 +1,4 @@
-class Exceptions(Exception):
+class CodeError(Exception):
     def __init__(self, msg: str):
         self.msg = msg
 
