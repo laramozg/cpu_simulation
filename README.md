@@ -170,7 +170,7 @@ endwhile
 3. Цикл исполнения: совершаются действия, необходимые для выполнения команды. Результаты вычисления записываются в
    аккумулятор
 4. Прерываний нет
-5. Ввод-вывод - port-mapped. Осуществляется посредством взаимодействия регистра IO с регистром ACC/с портами ввода-вывода
+5. Ввод-вывод - port-mapped. Осуществляется посредством взаимодействия IO с регистром ACC/с портами ввода-вывода
 
 ### Набор инструкций
 <table>
@@ -431,7 +431,7 @@ endwhile
 
 Интерфейс командной строки: `translator.py <input_file> <target_file>`
 
-Реализовано в модуле: [translator](./translator.py)
+Реализовано в модуле: [translator](src/translator.py)
 
 Этапы трансляции (функция `translate`):
 
@@ -451,7 +451,7 @@ endwhile
 
 Интерфейс командной строки: `mashine.py <code_file> <input_file>`
 
-Реализовано в модуле: [maсhine](./machine.py).
+Реализовано в модуле: [maсhine](src/machine.py).
 
 ### DataPath
 
@@ -503,10 +503,10 @@ endwhile
 
 Реализованные програмы
 
-1. [hello world](./examples/hello_world): вывести на экран строку `'Hello World!'`
-2. [cat](./examples/cat): программа `cat`, повторяем ввод на выводе.
-3. [hello_username](./examples/hello_user_name) -- программа `hello_user_name`: считывает имя пользователя и выводит на экран приветствие
-4. [prob1](./examples/prob1): найти сумму всех чисел, не превышающий `1 000`, которые кратны 3 или 5.
+1. [hello world](src/examples/hello_world): вывести на экран строку `'Hello World!'`
+2. [cat](src/examples/cat): программа `cat`, повторяем ввод на выводе.
+3. [hello_username](src/examples/hello_user_name) -- программа `hello_user_name`: считывает имя пользователя и выводит на экран приветствие
+4. [prob1](src/examples/prob1): найти сумму всех чисел, не превышающий `1 000`, которые кратны 3 или 5.
 
 Интеграционные тесты реализованы тут [integration_test](./integration_test.py):
 
