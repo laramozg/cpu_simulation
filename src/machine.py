@@ -91,7 +91,7 @@ class ALU:
 
 
 class DataPath:
-    registers = {"AC": 0, "AR": 0, "IP": 0, "DR": 0, "CR": 0, "BR": 0, "PS": '010'}
+    registers = {"AC": 0, "AR": 0, "IP": 0, "DR": 0, "CR": 0, "BR": 0, "PS": "010"}
     memory = []
     alu = ALU()
 
@@ -135,7 +135,7 @@ class ControlUnit:
         self.data_path.read()
 
     def set_flags(self):
-        return str(self.data_path.alu.N)+str(self.data_path.alu.Z)+str(self.data_path.alu.V)
+        return str(self.data_path.alu.N) + str(self.data_path.alu.Z) + str(self.data_path.alu.V)
 
     def __tick(self):
         self.tact += 1
@@ -311,7 +311,9 @@ class ControlUnit:
 
     def __print__(self):
         self.instr += 1
-        state_repr = ("INSTR: {:4} | AC {:4} | BR {:4} | IP: {:4} | AR: {:4} | PS: {:5} | DR: {:14} |  CR: {:21} |").format(
+        state_repr = (
+            "INSTR: {:4} | AC {:4} | BR {:4} | IP: {:4} | AR: {:4} | PS: {:5} | DR: {:14} |  CR: {:21} |"
+        ).format(
             self.instr,
             int(str(self.get_reg("AC")), 2),
             int(self.get_reg("BR")),
