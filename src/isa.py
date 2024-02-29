@@ -5,7 +5,7 @@ import struct
 
 class Opcode(str, enum.Enum):
     DATA = 0x0
-    # addressed commands
+
     ADD = 0x1
     SUB = 0x2
     DIV = 0x3
@@ -21,8 +21,7 @@ class Opcode(str, enum.Enum):
     BGE = 0xD
     BLE = 0xE
     BL = 0xF
-    BG = 0x11
-    # unaddressed commands
+
     NOP = 0x12
     HLT = 0x13
     CLA = 0x14
@@ -50,7 +49,6 @@ addressed_commands = [
     Opcode.BGE,
     Opcode.BLE,
     Opcode.BL,
-    Opcode.BG,
 ]
 
 unaddressed_commands = [

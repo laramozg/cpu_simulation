@@ -12,9 +12,7 @@ def main(args):
     with open(source, "rt", encoding="utf-8") as file:
         source = file.read()
 
-    lexer = Lexer(source)
-    parser = Parser(lexer)
-
+    parser = Parser(Lexer(source))
     try:
         code = parser.program()
         print("source LoC:", len(source.split("\n")), " code instr:", len(code))

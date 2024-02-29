@@ -44,18 +44,16 @@ class ALU:
         self.left = 0
         self.right = 0
         self.N = 0
-        self.Z = 0
-        self.C = 0
+        self.Z = 1
+        self.V = 0
 
     def set_flags(self, res):
         self.N = 1 if res < 0 else 0
         self.Z = 1 if res == 0 else 0
-
-    @staticmethod
-    def check_value(val: int):
-        if val > MAX_WORD or val < MIN_WORD:
-            raise CodeError("Overflow error!")
-        return val
+        if res > MAX_WORD or res < MIN_WORD:
+            self.V = 1
+            res = int(bin(res)[-32:], 2)
+        return res
 
     def alu_calculate(self, left, right, operation: AluOperation, sel_left: bool = True, sel_right: bool = True):
         left_operand = int(left, 2) if sel_left else 0
@@ -89,12 +87,11 @@ class ALU:
         elif operation == AluOperation.CLA:
             res = 0
 
-        self.set_flags(res)
-        return self.check_value(res)
+        return self.set_flags(res)
 
 
 class DataPath:
-    registers = {"AC": 0, "AR": 0, "IP": 0, "DR": 0, "CR": 0, "BR": 0}
+    registers = {"AC": 0, "AR": 0, "IP": 0, "DR": 0, "CR": 0, "BR": 0, "PS": '010'}
     memory = []
     alu = ALU()
 
@@ -109,10 +106,10 @@ class DataPath:
     def set_reg(self, reg, val):
         self.registers[reg] = val
 
-    def wr(self):
+    def write(self):
         self.memory[self.registers["AR"]] = "00000000" + str(self.registers["DR"])
 
-    def rd(self):
+    def read(self):
         self.registers["DR"] = self.memory[self.registers["AR"]]
 
 
@@ -132,10 +129,13 @@ class ControlUnit:
         return self.data_path.get_reg(reg)
 
     def sig_write(self):
-        self.data_path.wr()
+        self.data_path.write()
 
     def sig_read(self):
-        self.data_path.rd()
+        self.data_path.read()
+
+    def set_flags(self):
+        return str(self.data_path.alu.N)+str(self.data_path.alu.Z)+str(self.data_path.alu.V)
 
     def __tick(self):
         self.tact += 1
@@ -184,6 +184,7 @@ class ControlUnit:
         elif opcode == Opcode.LD.value:
             self.operand_fetch(arg_mode)
             self.data_path.alu.alu_calculate(self.get_reg("AC"), self.get_reg("DR"), AluOperation.ADD, False)
+            self.sig_latch_reg("PS", self.set_flags())
             self.sig_latch_reg("AC", self.get_reg("DR"))
             self.__tick()
 
@@ -191,6 +192,7 @@ class ControlUnit:
             self.sig_latch_reg("AR", int(self.get_reg("DR")[8:], 2))
             self.__tick()
             self.data_path.alu.alu_calculate(self.get_reg("AC"), self.get_reg("DR"), AluOperation.ADD, True, False)
+            self.sig_latch_reg("PS", self.set_flags())
             self.sig_latch_reg("DR", self.get_reg("AC"))
             self.__tick()
             self.sig_write()
@@ -208,6 +210,7 @@ class ControlUnit:
             res = self.data_path.alu.alu_calculate(
                 self.get_reg("AC"), self.get_reg("DR"), opcode_to_alu_operation[Opcode(opcode)]
             )
+            self.sig_latch_reg("PS", self.set_flags())
             if opcode not in Opcode.CMP:
                 self.sig_latch_reg("AC", bin(res)[2:])
             self.__tick()
@@ -216,6 +219,7 @@ class ControlUnit:
             res = self.data_path.alu.alu_calculate(
                 self.get_reg("AC"), self.get_reg("DR"), AluOperation.INC, True, False
             )
+            self.sig_latch_reg("PS", self.set_flags())
             self.sig_latch_reg("AC", bin(res)[2:])
             self.__tick()
 
@@ -223,17 +227,21 @@ class ControlUnit:
             res = self.data_path.alu.alu_calculate(
                 self.get_reg("AC"), self.get_reg("DR"), AluOperation.DEC, True, False
             )
+            self.sig_latch_reg("PS", self.set_flags())
             self.sig_latch_reg("AC", bin(res)[2:])
             self.__tick()
 
         elif opcode == Opcode.CLA.value:
             self.data_path.alu.alu_calculate(self.get_reg("AC"), self.get_reg("DR"), AluOperation.CLA, False, False)
+            self.sig_latch_reg("PS", self.set_flags())
             self.sig_latch_reg("AC", bin(0)[2:])
             self.__tick()
 
         elif opcode == Opcode.NEG.value:
             res = self.data_path.alu.alu_calculate(self.get_reg("AC"), self.get_reg("DR"), AluOperation.MUL)
+            self.sig_latch_reg("PS", self.set_flags())
             res1 = self.data_path.alu.alu_calculate(bin(res)[2:], self.get_reg("DR"), AluOperation.INC)
+            self.sig_latch_reg("PS", self.set_flags())
             self.sig_latch_reg("AC", bin(res1)[2:])
             self.__tick()
 
@@ -265,6 +273,7 @@ class ControlUnit:
         elif opcode == Opcode.LOOP.value:
             self.operand_fetch(arg_mode)
             res = self.data_path.alu.alu_calculate(self.get_reg("DR"), self.get_reg("AC"), AluOperation.DEC)
+            self.sig_latch_reg("PS", self.set_flags())
             self.sig_latch_reg("DR", bin(res)[2:])
             self.__tick()
             self.sig_write()
@@ -284,38 +293,31 @@ class ControlUnit:
                 self.__tick()
 
         elif opcode == Opcode.BGE.value:
-            # ~(n ^ v)
             if not self.data_path.alu.N:
                 self.sig_latch_reg("IP", int(self.get_reg("DR")[8:], 2))
                 self.__tick()
 
         elif opcode == Opcode.BLE.value:
-            # z | (n ^ v)
             if self.data_path.alu.Z | self.data_path.alu.N:
                 self.sig_latch_reg("IP", int(self.get_reg("DR")[8:], 2))
                 self.__tick()
 
         elif opcode == Opcode.BL.value:
-            # n ^ v
             if self.data_path.alu.N:
                 self.sig_latch_reg("IP", int(self.get_reg("DR")[8:], 2))
                 self.__tick()
 
-        elif opcode == Opcode.BG.value:
-            # ~(z | (n ^ v))
-            if not self.data_path.alu.Z | self.data_path.alu.N:
-                self.sig_latch_reg("IP", int(self.get_reg("DR")[8:], 2))
-                self.__tick()
         self.__print__()
 
     def __print__(self):
         self.instr += 1
-        state_repr = ("INSTR: {:4} | AC {:4} | BR {:4} | IP: {:4} | AR: {:4} | DR: {:12} |  CR: {:18} |").format(
+        state_repr = ("INSTR: {:4} | AC {:4} | BR {:4} | IP: {:4} | AR: {:4} | PS: {:5} | DR: {:14} |  CR: {:21} |").format(
             self.instr,
             int(str(self.get_reg("AC")), 2),
             int(self.get_reg("BR")),
             self.get_reg("IP"),
             self.get_reg("AR"),
+            self.get_reg("PS"),
             int(self.get_reg("DR"), 2),
             parser_to_name_instr(self.get_reg("CR")),
         )
@@ -366,9 +368,9 @@ def main(args):
 
 
 if __name__ == "__main__":
-    logging.basicConfig(
-        filename="logfile.log", level=logging.INFO, format="%(levelname)-7s %(module)s:%(funcName)-13s %(message)s"
-    )
+    # logging.basicConfig(
+    #     filename="logfile.log", level=logging.INFO, format="%(levelname)-7s %(module)s:%(funcName)-13s %(message)s"
+    # )
     FORMAT = "%(levelname)-7s %(module)s:%(funcName)-13s %(message)s"
     logging.basicConfig(format=FORMAT)
     logging.getLogger().setLevel(logging.INFO)

@@ -11,7 +11,7 @@ class TokenType(enum.Enum):
     OPEN_PAREN_ROUND = 4
     CLOSE_PAREN_ROUND = 5
     COMMA = 6
-    # Keywords.
+
     PRINT = 100
     INPUT = 101
     IF = 102
@@ -20,7 +20,7 @@ class TokenType(enum.Enum):
     ENDWHILE = 105
     INT = 106
     STRING = 107
-    # Operators.
+
     EQ = 200
     PLUS = 201
     MINUS = 202
@@ -42,8 +42,8 @@ class TokenType(enum.Enum):
 
 class Token:
     def __init__(self, token_text: str, token_kind: TokenType):
-        self.text = token_text  # actual text for identifiers, strings, and numbers
-        self.kind = token_kind  # token class
+        self.text = token_text
+        self.kind = token_kind
 
 
 class Lexer:

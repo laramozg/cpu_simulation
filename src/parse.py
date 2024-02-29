@@ -85,7 +85,6 @@ class Parser:
             self.var_indx[self.loop_cointer(var)] = len(self.variables)
             self.variables.append({"opcode": Opcode.DATA, "arg": 0, "arg_mode": AddressingMode.DIRECT})
 
-    # Create extra variable for data store for the calculation process; put it in Term format to the 'variables' array
     def __create_exp_op(self):
         self.exp_ind += 1
         exp = "exp_op" + str(self.exp_ind)
@@ -98,14 +97,12 @@ class Parser:
         self.instructions.append({"opcode": Opcode.ST, "arg": exp, "arg_mode": AddressingMode.ABSOLUTE})
         return exp
 
-    # Add calculation instruction to the program for the calculation process
     def __create_exp_evaluation(self, opcode, exp1, exp2, exp_res):
         self.instructions.append({"opcode": Opcode.LD, "arg": exp1, "arg_mode": AddressingMode.ABSOLUTE})
         self.instructions.append({"opcode": opcode, "arg": exp2, "arg_mode": AddressingMode.ABSOLUTE})
         if exp_res is not None:
             self.instructions.append({"opcode": Opcode.ST, "arg": exp_res, "arg_mode": AddressingMode.ABSOLUTE})
 
-    # Generate final code in Term format - add variables to the head, change variables and labels to their addresses
     def __generate_machine_code_arr(self):
         self.__add_variables()
         code = []
