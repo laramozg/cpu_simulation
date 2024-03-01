@@ -164,7 +164,7 @@ class ControlUnit:
             self.sig_read()
             self.__tick()
 
-    def instruction_fetch(self, arg: int):
+    def instruction_fetch(self):
         self.sig_latch_reg("AR", self.get_reg("IP"))
         self.sig_latch_reg("BR", self.get_reg("IP"))
         self.__tick()
@@ -176,7 +176,7 @@ class ControlUnit:
 
     def decode_and_execute_instruction(self):
         instr = self.memory[self.get_reg("IP")]
-        self.instruction_fetch(instr)
+        self.instruction_fetch()
         opcode = str(int(instr[:6], 2))
         arg_mode = str(int(instr[6:8], 2))
 
@@ -217,17 +217,9 @@ class ControlUnit:
                 self.sig_latch_reg("AC", bin(res)[2:])
             self.__tick()
 
-        elif opcode == Opcode.INC.value:
+        elif opcode in [Opcode.INC.value, Opcode.DEC.value]:
             res = self.data_path.alu.alu_calculate(
-                self.get_reg("AC"), self.get_reg("DR"), AluOperation.INC, True, False
-            )
-            self.sig_latch_reg("PS", self.set_flags())
-            self.sig_latch_reg("AC", bin(res)[2:])
-            self.__tick()
-
-        elif opcode == Opcode.DEC.value:
-            res = self.data_path.alu.alu_calculate(
-                self.get_reg("AC"), self.get_reg("DR"), AluOperation.DEC, True, False
+                self.get_reg("AC"), self.get_reg("DR"), opcode_to_alu_operation[Opcode(opcode)], True, False
             )
             self.sig_latch_reg("PS", self.set_flags())
             self.sig_latch_reg("AC", bin(res)[2:])

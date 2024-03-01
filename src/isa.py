@@ -103,11 +103,16 @@ def write_code(filename, code):
             arg = item.get("arg")
             if arg is None:
                 ft.write(
-                    f"{'0x'}{'{:0>8}'.format(hex(i)[2:].upper()).ljust(16)}   {'0x'}{'{:0>8}'.format(hex(int(intstr[i], 2))[2:].upper()).ljust(30)}   {Opcode(item['opcode']).name}\n"
+                    f"{'0x'}{'{:0>8}'.format(hex(i)[2:].upper()).ljust(16)}   "
+                    f"{'0x'}{'{:0>8}'.format(hex(int(intstr[i],2))[2:].upper()).ljust(30)}   "
+                    f"{Opcode(item['opcode']).name}\n"
                 )
             else:
                 ft.write(
-                    f"{'0x'}{'{:0>8}'.format(hex(i)[2:].upper()).ljust(16)}   {'0x'}{'{:0>8}'.format(hex(int(intstr[i], 2))[2:].upper()).ljust(30)}   {Opcode(item['opcode']).name} {item.get('arg')} {AddressingMode(item['arg_mode']).name}\n"
+                    f"{'0x'}{'{:0>8}'.format(hex(i)[2:].upper()).ljust(16)}   "
+                    f"{'0x'}{'{:0>8}'.format(hex(int(intstr[i], 2))[2:].upper()).ljust(30)}   "
+                    f"{Opcode(item['opcode']).name} {item.get('arg')} "
+                    f"{AddressingMode(item['arg_mode']).name}\n"
                 )
             i += 1
 
@@ -121,15 +126,11 @@ def read_code(filename):
     while index < len(byte_code):
         opcode = bin(byte_code[index])[2:].zfill(6)
         index += 1
-
         arg_mode = bin(byte_code[index])[2:].zfill(2)
         index += 1
-
-        arg = bin(int.from_bytes(byte_code[index : index + 2], byteorder="big"))[2:].zfill(24)
+        arg = bin(int.from_bytes(byte_code[index: index + 2], byteorder="big"))[2:].zfill(24)
         index += 2
-
         instruction_binary = "{}{}{}".format(opcode, arg_mode, arg)
-
         code.append(instruction_binary)
 
     return code

@@ -168,7 +168,7 @@ class Lexer:
                     raise CodeError("Illegal character in string")
                 self.__next_char()
 
-            tok_text = self.source[start_pos : self.cur_pos]
+            tok_text = self.source[start_pos: self.cur_pos]
             token = Token(tok_text, TokenType.WORD)
 
         elif self.cur_char.isdigit():
@@ -177,7 +177,7 @@ class Lexer:
                 self.__next_char()
             if self.__peek() == ".":
                 raise CodeError("Use only integers")
-            tok_text = self.source[start_pos : self.cur_pos + 1]
+            tok_text = self.source[start_pos: self.cur_pos + 1]
             token = Token(tok_text, TokenType.NUMBER)
 
         elif self.cur_char.isalpha():
@@ -185,7 +185,7 @@ class Lexer:
             while self.__peek().isalnum():
                 self.__next_char()
 
-            tok_text = self.source[start_pos : self.cur_pos + 1]
+            tok_text = self.source[start_pos: self.cur_pos + 1]
             keyword = None
             for kind in TokenType:
                 if kind.name == tok_text.upper() and 100 <= kind.value < 200:
