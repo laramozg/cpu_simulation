@@ -53,15 +53,15 @@ class Parser:
         return "end_loop" + str(number)
 
     @staticmethod
-    def index(label: str):
+    def start_index(label: str):
         return label + "index"
 
     @staticmethod
-    def loop_arg_count(count: str):
+    def number_of_characters(count: str):
         return count + "count"
 
     @staticmethod
-    def loop_cointer(counter: str):
+    def number_not_outc_characters(counter: str):
         return counter + "counter"
 
     def __add_variables(self):
@@ -70,19 +70,17 @@ class Parser:
             self.variables.append({"opcode": Opcode.DATA, "arg": value, "arg_mode": AddressingMode.DIRECT})
 
         for var, value in self.strings.items():
-            self.var_indx[self.index(var)] = len(self.variables)
-
+            self.var_indx[self.start_index(var)] = len(self.variables)
             self.variables.append(
                 {"opcode": Opcode.DATA, "arg": len(self.variables) + 2, "arg_mode": AddressingMode.ABSOLUTE}
             )
-            self.var_indx[self.loop_arg_count(var)] = len(self.variables)
-
+            self.var_indx[self.number_of_characters(var)] = len(self.variables)
             self.var_indx[var] = len(self.variables)
             self.variables.append({"opcode": Opcode.DATA, "arg": len(value), "arg_mode": AddressingMode.DIRECT})
             for i in range(0, len(value)):
                 letter = value[i]
                 self.variables.append({"opcode": Opcode.DATA, "arg": ord(letter), "arg_mode": AddressingMode.DIRECT})
-            self.var_indx[self.loop_cointer(var)] = len(self.variables)
+            self.var_indx[self.number_not_outc_characters(var)] = len(self.variables)
             self.variables.append({"opcode": Opcode.DATA, "arg": 0, "arg_mode": AddressingMode.DIRECT})
 
     def __create_exp_op(self):
@@ -146,9 +144,9 @@ class Parser:
                 self.loop_ind += 1
                 l_begin = self.loop_begin(self.loop_ind)
                 l_end = self.loop_end(self.loop_ind)
-                ptr = self.index(ident)
-                l_count_symbol = self.loop_arg_count(ident)
-                l_counter = self.loop_cointer(ident)
+                ptr = self.start_index(ident)
+                l_count_symbol = self.number_of_characters(ident)
+                l_counter = self.number_not_outc_characters(ident)
                 self.instructions.append(
                     {"opcode": Opcode.LD, "arg": l_count_symbol, "arg_mode": AddressingMode.ABSOLUTE}
                 )
@@ -252,15 +250,15 @@ class Parser:
                 else:
                     exp = self.__create_and_save_to_exp_op()
                     if operator == TokenType.PLUSEQ:
-                        self.__create_exp_evaluation(opcode=Opcode.ADD, exp1=ident, exp2=exp, exp_res=ident)
+                        self.__create_exp_evaluation(Opcode.ADD, ident, exp, ident)
                     elif operator == TokenType.MINUSEQ:
-                        self.__create_exp_evaluation(opcode=Opcode.SUB, exp1=ident, exp2=exp, exp_res=ident)
+                        self.__create_exp_evaluation(Opcode.SUB, ident, exp, ident)
                     elif operator == TokenType.SLASHEQ:
-                        self.__create_exp_evaluation(opcode=Opcode.DIV, exp1=ident, exp2=exp, exp_res=ident)
+                        self.__create_exp_evaluation(Opcode.DIV, ident, exp, ident)
                     elif operator == TokenType.ASTERISKEQ:
-                        self.__create_exp_evaluation(opcode=Opcode.MUL, exp1=ident, exp2=exp, exp_res=ident)
+                        self.__create_exp_evaluation(Opcode.MUL, ident, exp, ident)
                     elif operator == TokenType.MODEQ:
-                        self.__create_exp_evaluation(opcode=Opcode.MOD, exp1=ident, exp2=exp, exp_res=ident)
+                        self.__create_exp_evaluation(Opcode.MOD, ident, exp, ident)
                     else:
                         raise CodeError("Invalid operator in assignment - " + ident)
             else:
@@ -305,7 +303,7 @@ class Parser:
             self.__next_token()
             self.expression()
             exp_id2 = self.__create_and_save_to_exp_op()
-            self.__create_exp_evaluation(opcode=Opcode.CMP, exp1=exp_id1, exp2=exp_id2, exp_res=None)
+            self.__create_exp_evaluation(Opcode.CMP, exp_id1, exp_id2, None)
             if operator == "==":
                 self.last_comparison_instr = Opcode.BNE
             elif operator == "!=":
@@ -332,9 +330,9 @@ class Parser:
                 self.term()
                 exp2 = self.__create_and_save_to_exp_op()
                 if operator == "+":
-                    self.__create_exp_evaluation(opcode=Opcode.ADD, exp1=exp1, exp2=exp2, exp_res=None)
+                    self.__create_exp_evaluation(Opcode.ADD, exp1, exp2, None)
                 elif operator == "-":
-                    self.__create_exp_evaluation(opcode=Opcode.SUB, exp1=exp1, exp2=exp2, exp_res=None)
+                    self.__create_exp_evaluation(Opcode.SUB, exp1, exp2, None)
 
     def term(self):
         self.unary()
@@ -355,11 +353,11 @@ class Parser:
                 self.unary()
                 exp2 = self.__create_and_save_to_exp_op()
                 if operator == "/":
-                    self.__create_exp_evaluation(opcode=Opcode.DIV, exp1=exp1, exp2=exp2, exp_res=None)
+                    self.__create_exp_evaluation(Opcode.DIV, exp1, exp2, None)
                 elif operator == "*":
-                    self.__create_exp_evaluation(opcode=Opcode.MUL, exp1=exp1, exp2=exp2, exp_res=None)
+                    self.__create_exp_evaluation(Opcode.MUL, exp1, exp2, None)
                 elif operator == "%":
-                    self.__create_exp_evaluation(opcode=Opcode.MOD, exp1=exp1, exp2=exp2, exp_res=None)
+                    self.__create_exp_evaluation(Opcode.MOD, exp1, exp2, None)
 
     def unary(self):
         token = None
@@ -436,7 +434,6 @@ class Parser:
         elif self.__check_token(TokenType.IDENT):
             if self.cur_token.text not in self.integers:
                 raise CodeError("Referencing variable before assignment: " + self.cur_token.text)
-
             res = int(self.integers[self.cur_token.text])
             self.__next_token()
         else:

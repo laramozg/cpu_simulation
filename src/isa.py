@@ -21,6 +21,7 @@ class Opcode(str, enum.Enum):
     BGE = 0xD
     BLE = 0xE
     BL = 0xF
+    BG = 0x11
 
     NOP = 0x12
     HLT = 0x13
@@ -49,6 +50,7 @@ addressed_commands = [
     Opcode.BGE,
     Opcode.BLE,
     Opcode.BL,
+    Opcode.BG,
 ]
 
 unaddressed_commands = [
