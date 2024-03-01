@@ -53,6 +53,8 @@ class ALU:
         if res > MAX_WORD or res < MIN_WORD:
             self.V = 1
             res = int(bin(res)[-32:], 2)
+        else:
+            self.V = 0
         return res
 
     def alu_calculate(self, left, right, operation: AluOperation, sel_left: bool = True, sel_right: bool = True):

@@ -59,7 +59,7 @@
 <primary> ::= <number> | <ident>
 
 <ident> ::= <letter> | <letter> <letter_or_digit_list>
-<number> ::= <digit> | <digit_from_1> <digit_list>
+<number> ::= <digit> | <digit_list>
 <word> ::= <letter_or_digit_or_space> | <letter_or_digit_or_space> <word>
 
 <letter_or_digit_list> ::= <letter_or_digit> | <letter_or_digit> <letter_or_digit_list>
@@ -72,7 +72,6 @@
 <space> ::= " " | "\t"
 <letter> ::= [a-z] | [A-Z]
 <digit> ::= [0-9]
-<digit_from_1> ::= [1-9]
 ```
 
 **Пояснения**
@@ -117,7 +116,7 @@ endwhile
 - Поддерживаются строковые литералы, символы стоки необходимо заключить в кавычки
 - Код выполняется последовательно
 
-- Название переменной не может содержать цифры.
+- Название переменной не может начинаться с цифры.
 - Пустые строки игнорируются, количество пробелов в начале и конце строки не важно.
 - Любой текст, расположенный после`//` трактуется как комментарий.
 
