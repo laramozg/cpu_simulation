@@ -128,7 +128,7 @@ def read_code(filename):
         index += 1
         arg_mode = bin(byte_code[index])[2:].zfill(2)
         index += 1
-        arg = bin(int.from_bytes(byte_code[index: index + 2], byteorder="big"))[2:].zfill(24)
+        arg = bin(int.from_bytes(byte_code[index : index + 2], byteorder="big"))[2:].zfill(24)
         index += 2
         instruction_binary = "{}{}{}".format(opcode, arg_mode, arg)
         code.append(instruction_binary)
